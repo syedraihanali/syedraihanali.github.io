@@ -1,4 +1,3 @@
-// DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
     initNavbar();
@@ -6,16 +5,91 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollToTop();
     initSmoothScrolling();
     initLoadAnimations();
+    initLazyLoading();
+    initMobileOptimizations();
+    hideLoadingScreen();
 });
 
-// Navbar functionality
+function hideLoadingScreen() {
+    const loading = document.getElementById('loading');
+    const minimumLoadTime = 800;
+    
+    setTimeout(() => {
+        loading.classList.add('fade-out');
+        setTimeout(() => {
+            loading.style.display = 'none';
+        }, 500);
+    }, minimumLoadTime);
+}
+
+function initMobileOptimizations() {
+    const viewportMeta = document.querySelector('meta[name="viewport"]');
+    if (viewportMeta) {
+        const content = viewportMeta.getAttribute('content');
+        viewportMeta.setAttribute('content', content + ', user-scalable=no');
+        
+        setTimeout(() => {
+            viewportMeta.setAttribute('content', content);
+        }, 1000);
+    }
+    
+    window.addEventListener('orientationchange', function() {
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 100);
+    });
+    
+    const skillItems = document.querySelectorAll('.skill-item');
+    skillItems.forEach(item => {
+        let touchTimeout;
+        
+        item.addEventListener('touchstart', function() {
+            touchTimeout = setTimeout(() => {
+                // Show tooltip on long press
+                this.classList.add('show-tooltip');
+            }, 500);
+        });
+        
+        item.addEventListener('touchend', function() {
+            clearTimeout(touchTimeout);
+            setTimeout(() => {
+                this.classList.remove('show-tooltip');
+            }, 2000);
+        });
+    });
+    
+    if ('scrollBehavior' in document.documentElement.style) {
+        document.documentElement.style.scrollBehavior = 'smooth';
+    }
+}
+
+function initLazyLoading() {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.src;
+                    img.classList.remove('lazy');
+                    imageObserver.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px'
+        });
+
+        images.forEach(img => imageObserver.observe(img));
+    }
+}
+
 function initNavbar() {
     const navbar = document.getElementById('navbar');
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    // Navbar scroll effect
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             navbar.style.background = 'rgba(255, 255, 255, 0.98)';
@@ -26,12 +100,17 @@ function initNavbar() {
         }
     });
 
-    // Mobile menu toggle
-    hamburger.addEventListener('click', () => {
+    hamburger.addEventListener('click', (e) => {
+        e.preventDefault();
         navMenu.classList.toggle('active');
         hamburger.classList.toggle('active');
         
-        // Animate hamburger lines
+        if (navMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        
         const spans = hamburger.querySelectorAll('span');
         if (hamburger.classList.contains('active')) {
             spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
@@ -44,49 +123,73 @@ function initNavbar() {
         }
     });
 
-    // Close mobile menu when clicking on a link
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
             hamburger.classList.remove('active');
+            document.body.style.overflow = '';
             
-            // Reset hamburger animation
             const spans = hamburger.querySelectorAll('span');
             spans[0].style.transform = 'none';
             spans[1].style.opacity = '1';
             spans[2].style.transform = 'none';
         });
     });
+    
+    document.addEventListener('click', (e) => {
+        if (!navbar.contains(e.target) && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            // Reset hamburger animation
+            const spans = hamburger.querySelectorAll('span');
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        }
+    });
 
-    // Highlight active nav link on scroll
     window.addEventListener('scroll', highlightActiveNavLink);
+    
+    highlightActiveNavLink();
 }
 
-// Highlight active navigation link based on scroll position
 function highlightActiveNavLink() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
     
     let current = '';
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
     
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (window.scrollY >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
-        }
-    });
+    if (scrollY < 100) {
+        current = 'home';
+    } else {
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollY >= (sectionTop - windowHeight/3) && 
+                scrollY < (sectionTop + sectionHeight - windowHeight/3)) {
+                current = sectionId;
+            }
+        });
+    }
     
     navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
     });
+    
+    if (current) {
+        const activeLink = document.querySelector(`.nav-link[href="#${current}"]`);
+        if (activeLink) {
+            activeLink.classList.add('active');
+        }
+    }
 }
 
-// Scroll animations for elements coming into view
 function initScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -99,7 +202,6 @@ function initScrollAnimations() {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
                 
-                // Add stagger effect for grid items
                 if (entry.target.classList.contains('project-card') || 
                     entry.target.classList.contains('skill-item') ||
                     entry.target.classList.contains('contact-item')) {
@@ -112,7 +214,6 @@ function initScrollAnimations() {
         });
     }, observerOptions);
 
-    // Observe elements for scroll animations
     const animatedElements = document.querySelectorAll('.project-card, .skill-item, .contact-item, .about-bio, .section-title');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
@@ -122,7 +223,6 @@ function initScrollAnimations() {
     });
 }
 
-// Scroll to top button
 function initScrollToTop() {
     const scrollTopBtn = document.getElementById('scrollTop');
     
@@ -142,7 +242,6 @@ function initScrollToTop() {
     });
 }
 
-// Smooth scrolling for anchor links
 function initSmoothScrolling() {
     const links = document.querySelectorAll('a[href^="#"]');
     
@@ -154,7 +253,7 @@ function initSmoothScrolling() {
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 70; // Account for fixed navbar
+                const offsetTop = targetSection.offsetTop - 70;
                 
                 window.scrollTo({
                     top: offsetTop,
@@ -165,9 +264,7 @@ function initSmoothScrolling() {
     });
 }
 
-// Initial load animations
 function initLoadAnimations() {
-    // Animate hero elements on load
     const heroElements = document.querySelectorAll('.hero .fade-in');
     heroElements.forEach((element, index) => {
         element.style.opacity = '0';
@@ -181,7 +278,6 @@ function initLoadAnimations() {
     });
 }
 
-// Add hover effects to buttons
 document.addEventListener('DOMContentLoaded', function() {
     const buttons = document.querySelectorAll('.btn');
     
@@ -196,7 +292,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Add typing effect to hero text (optional enhancement)
 function typeWriter(element, text, speed = 100) {
     let i = 0;
     element.innerHTML = '';
@@ -212,7 +307,6 @@ function typeWriter(element, text, speed = 100) {
     type();
 }
 
-// Parallax effect for hero section (subtle)
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const heroImage = document.querySelector('.hero-image');
@@ -222,7 +316,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Add loading animation
 window.addEventListener('load', () => {
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.3s ease';
@@ -232,7 +325,6 @@ window.addEventListener('load', () => {
     }, 100);
 });
 
-// Performance optimization: Throttle scroll events
 function throttle(func, limit) {
     let inThrottle;
     return function() {
@@ -246,12 +338,10 @@ function throttle(func, limit) {
     }
 }
 
-// Apply throttling to scroll events
 window.addEventListener('scroll', throttle(() => {
     highlightActiveNavLink();
-}, 16)); // ~60fps
+}, 16));
 
-// Dark mode toggle (bonus feature)
 function initDarkMode() {
     const darkModeToggle = document.createElement('button');
     darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
@@ -274,7 +364,6 @@ function initDarkMode() {
     
     document.body.appendChild(darkModeToggle);
     
-    // Check for saved theme preference
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         document.body.classList.add('dark-theme');

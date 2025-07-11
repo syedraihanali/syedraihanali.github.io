@@ -2,25 +2,111 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syed Raihan Ali - Developer & Problem Solver</title>
-    <meta name="description" content="Portfolio of Syed Raihan Ali - Developer & Problem Solver">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="format-detection" content="telephone=no">
     
-    <!-- Favicon -->
+    <title>Syed Raihan Ali - Full Stack Developer | TypeScript, React.js, Next.js Expert</title>
+    <meta name="description" content="Syed Raihan Ali is a passionate Full-Stack Developer from Bangladesh specializing in TypeScript, React.js, Next.js, and competitive programming. View portfolio and projects.">
+    <meta name="keywords" content="Full Stack Developer, TypeScript, React.js, Next.js, Frontend Developer, Backend Developer, Web Development, Portfolio, Bangladesh">
+    <meta name="author" content="Syed Raihan Ali">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="Syed Raihan Ali - Full Stack Developer">
+    <meta property="og:description" content="Passionate Full-Stack Developer specializing in TypeScript, React.js, and Next.js. Building modern web applications with clean architecture.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://syedraihanali.github.io/">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/134129699?v=4">
+    <meta property="og:site_name" content="Syed Raihan Ali Portfolio">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Syed Raihan Ali - Full Stack Developer">
+    <meta name="twitter:description" content="Passionate Full-Stack Developer specializing in TypeScript, React.js, and Next.js">
+    <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/134129699?v=4">
+    
+    <link rel="canonical" href="https://syedraihanali.github.io/">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
     
-    <!-- Google Fonts -->
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; background: #0a0a0a; }
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .navbar { position: fixed; top: 0; width: 100%; z-index: 1000; backdrop-filter: blur(10px); }
+        .fade-in { opacity: 1; transform: translateY(0); }
+        
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 0 1rem; }
+            .btn, .nav-link, .social-link { min-height: 44px; }
+        }
+    </style>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="css/style.css">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Syed Raihan Ali",
+      "jobTitle": "Full Stack Developer",
+      "description": "Passionate Full-Stack Developer specializing in TypeScript, React.js, and Next.js",
+      "url": "https://syedraihanali.github.io/",
+      "image": "https://avatars.githubusercontent.com/u/134129699?v=4",
+      "sameAs": [
+        "https://github.com/syedraihanali",
+        "https://www.linkedin.com/in/syedraihanali/"
+      ],
+      "knowsAbout": ["TypeScript", "React.js", "Next.js", "JavaScript", "Full Stack Development", "Web Development"],
+      "alumniOf": "Bangladesh",
+      "email": "syedraihanali65@gmail.com"
+    }
+    </script>
 </head>
 <body>
-    <!-- Navigation -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+    
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
@@ -40,16 +126,15 @@
         </div>
     </nav>
 
-    <!-- Home Section -->
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="hero-name fade-in">Syed Raihan Ali</h1>
-                    <h2 class="hero-role fade-in">Developer & Problem Solver</h2>
-                    <p class="hero-tagline fade-in">Building modern web applications with cutting-edge technologies</p>
+                    <h2 class="hero-role fade-in">Full Stack Developer</h2>
+                    <p class="hero-tagline fade-in">Crafting seamless digital experiences from frontend to backend with modern technologies</p>
                     <div class="hero-buttons fade-in">
-                        <a href="assets/cv.pdf" class="btn btn-primary" target="_blank">
+                        <a href="assets/CV_Syed_Raihan_Ali.pdf" class="btn btn-primary" target="_blank">
                             <i class="fas fa-download"></i>
                             Download CV
                         </a>
@@ -61,60 +146,116 @@
                 </div>
                 <div class="hero-image fade-in">
                     <div class="profile-image">
-                        <img src="https://avatars.githubusercontent.com/u/134129699?v=4" alt="Syed Raihan Ali">
+                        <img src="https://avatars.githubusercontent.com/u/134129699?v=4" 
+                             alt="Syed Raihan Ali - Full Stack Developer" 
+                             loading="eager" 
+                             width="300" 
+                             height="300"
+                             fetchpriority="high">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
                     <p class="about-bio">
-                        I'm a dedicated Full-Stack Developer from Bangladesh with a passion for creating innovative web applications. 
-                        I specialize in modern JavaScript frameworks including React.js, Next.js, and Vue.js, with strong expertise in TypeScript. 
-                        My experience spans from building comprehensive management systems to developing responsive portfolio websites and movie streaming platforms. 
-                        I enjoy solving complex problems through clean, efficient code and am always eager to learn new technologies to deliver exceptional user experiences.
+                        I'm a passionate Full-Stack Developer who specializes in TypeScript, React.js, and Next.js, while currently expanding my skills with Flutter and C++ for competitive programming.
+                        <br><br>
+                        💻 I've built diverse projects including movie streaming platforms, blogging systems, pricing components, and Netflix clones — each focused on clean architecture and intuitive user experiences.
+                        <br><br>
+                        ⚙️ I'm deeply involved in competitive programming and enjoy solving algorithmic challenges. I'm highly curious and always exploring how things work under the hood.
+                        <br><br>
+                        📌 Currently looking for opportunities to contribute to impactful projects with forward-thinking teams.
+                        <br><br>
+                        📬 If you’re building something interesting or just want to chat about tech, feel free to connect!
                     </p>
                 </div>
                 <div class="skills">
-                    <h3>Skills & Technologies</h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <i class="fab fa-js-square"></i>
-                            <span>JavaScript</span>
+                    <div class="skills-categories">
+                        <div class="skill-category" data-category="Frontend">
+                            <div class="skills-grid">
+                                <div class="skill-item" data-skill="React.js">
+                                    <img src="assets/icons/react.svg" alt="React.js" class="skill-icon" loading="lazy" width="32" height="32">
+                                </div>
+                                <div class="skill-item" data-skill="Next.js">
+                                    <img src="assets/icons/nextjs.svg" alt="Next.js" class="skill-icon" loading="lazy" width="32" height="32">
+                                </div>
+                                <div class="skill-item" data-skill="TypeScript">
+                                    <img src="assets/icons/typescript.svg" alt="TypeScript" class="skill-icon" loading="lazy" width="32" height="32">
+                                </div>
+                                <div class="skill-item" data-skill="JavaScript">
+                                    <img src="assets/icons/javascript.svg" alt="JavaScript" class="skill-icon" loading="lazy" width="32" height="32">
+                                </div>
+                                <div class="skill-item" data-skill="TailwindCSS">
+                                    <img src="assets/icons/tailwindcss.svg" alt="TailwindCSS" class="skill-icon" loading="lazy" width="32" height="32">
+                                </div>
+                            </div>
                         </div>
-                        <div class="skill-item">
-                            <i class="fab fa-js-square" style="color: #3178c6;"></i>
-                            <span>TypeScript</span>
+
+                        <div class="skill-category" data-category="Backend & Mobile">
+                            <div class="skills-grid">
+                                <div class="skill-item" data-skill="Node.js">
+                                    <img src="assets/icons/nodejs.svg" alt="Node.js" class="skill-icon" loading="lazy" width="32" height="32">
+                                </div>
+                                <div class="skill-item" data-skill="Flutter">
+                                    <img src="assets/icons/flutter.svg" alt="Flutter" class="skill-icon" loading="lazy" width="32" height="32">
+                                </div>
+                            </div>
                         </div>
-                        <div class="skill-item">
-                            <i class="fab fa-react"></i>
-                            <span>React.js</span>
+
+                        <div class="skill-category" data-category="Programming Languages">
+                            <div class="skills-grid">
+                                <div class="skill-item" data-skill="Python">
+                                    <img src="assets/icons/python.svg" alt="Python" class="skill-icon" loading="lazy" width="32" height="32">
+                                </div>
+                                <div class="skill-item" data-skill="C++">
+                                    <img src="assets/icons/cpp.svg" alt="C++" class="skill-icon" loading="lazy" width="32" height="32">
+                                </div>
+                                <div class="skill-item" data-skill="Bash">
+                                    <img src="assets/icons/bash.svg" alt="Bash" class="skill-icon" loading="lazy" width="32" height="32">
+                                </div>
+                            </div>
                         </div>
-                        <div class="skill-item">
-                            <i class="fas fa-bolt"></i>
-                            <span>Next.js</span>
+
+                        <div class="skill-category" data-category="Version Control">
+                            <div class="skills-grid">
+                                <div class="skill-item" data-skill="Git">
+                                    <img src="assets/icons/git.svg" alt="Git & GitHub" class="skill-icon" loading="lazy" width="32" height="32">
+                                </div>
+                                <div class="skill-item" data-skill="GitLab">
+                                    <img src="assets/icons/gitlab.svg" alt="GitLab" class="skill-icon" loading="lazy" width="32" height="32">
+                                </div>
+                            </div>
                         </div>
-                        <div class="skill-item">
-                            <i class="fab fa-vuejs"></i>
-                            <span>Vue.js</span>
+
+                        <div class="skill-category" data-category="Editors & IDEs">
+                            <div class="skills-grid">
+                                <div class="skill-item" data-skill="VS Code">
+                                    <img src="assets/icons/vscode.svg" alt="VS Code" class="skill-icon" loading="lazy" width="32" height="32">
+                                </div>
+                                <div class="skill-item" data-skill="JetBrains IDEs">
+                                    <img src="assets/icons/jetbrains.svg" alt="JetBrains" class="skill-icon" loading="lazy" width="32" height="32">
+                                </div>
+                                <div class="skill-item" data-skill="Vim">
+                                    <img src="assets/icons/vim.svg" alt="Vim" class="skill-icon" loading="lazy" width="32" height="32">
+                                </div>
+                            </div>
                         </div>
-                        <div class="skill-item">
-                            <i class="fab fa-css3-alt"></i>
-                            <span>TailwindCSS</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-node-js"></i>
-                            <span>Node.js</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-git-alt"></i>
-                            <span>Git & GitHub</span>
+
+                        <div class="skill-category" data-category="Operating Systems">
+                            <div class="skills-grid">
+                                <div class="skill-item" data-skill="Linux">
+                                    <img src="assets/icons/linux.svg" alt="Linux" class="skill-icon" loading="lazy" width="32" height="32">
+                                </div>
+                                <div class="skill-item" data-skill="Windows">
+                                    <img src="assets/icons/windows.svg" alt="Windows" class="skill-icon" loading="lazy" width="32" height="32">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -122,141 +263,209 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">My Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-school"></i>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
                     </div>
-                    <h3>School Management System</h3>
-                    <p>A comprehensive school management system built with TypeScript for managing students, teachers, and administrative tasks.</p>
-                    <a href="https://github.com/syedraihanali/school-management-system" class="project-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                        View on GitHub
-                    </a>
+                    <div class="project-content">
+                        <h3>Loop IT blogs</h3>
+                        <p>A modern blog website built with Next.js, TypeScript, Tailwind CSS, and Prisma. Features user authentication, post management, and a clean, responsive UI for sharing articles.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://github.com/syedraihanali/loop-it-main" class="project-link primary" target="_blank" rel="noopener" aria-label="modern blog website code on GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                            View Code
+                        </a>
+                        <a href="https://loop-it-main.vercel.app/" class="project-link secondary" aria-label="modern blog website live demo">
+                            <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                            Live Demo
+                        </a>
+                    </div>
                 </div>
                 
                 <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-globe"></i>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-blog"></i>
+                        </div>
                     </div>
-                    <h3>Portfolio Website</h3>
-                    <p>My official portfolio website built with TypeScript showcasing my projects and skills in web development.</p>
-                    <a href="https://github.com/syedraihanali/portfolio-website" class="project-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                        View on GitHub
-                    </a>
+                    <div class="project-content">
+                        <h3>Code Info</h3>
+                        <p>A modern blog platform built with Next.js 13, Sanity CMS, and TypeScript. Features dynamic content management, SEO optimization, and responsive design for coding tutorials.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Next.js 13</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Sanity CMS</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://github.com/syedraihanali/code-info" class="project-link primary" target="_blank">
+                            <i class="fab fa-github"></i>
+                            View Code
+                        </a>
+                        <a href="#" class="project-link secondary">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live Demo
+                        </a>
+                    </div>
                 </div>
                 
                 <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fab fa-react"></i>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
                     </div>
-                    <h3>Portfolio React</h3>
-                    <p>A personal portfolio website built with ReactJS and TailwindCSS featuring modern design and responsive layout.</p>
-                    <a href="https://github.com/syedraihanali/portfolio-react" class="project-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                        View on GitHub
-                    </a>
+                    <div class="project-content">
+                        <h3>School Management System</h3>
+                        <p>A comprehensive school management system built with React and Tailwind CSS. It provides features for managing students, teachers, classes, attendance, and more with an intuitive admin dashboard.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Nextjs</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://github.com/syedraihanali/school-management-system" class="project-link primary" target="_blank">
+                            <i class="fab fa-github"></i>
+                            View Code
+                        </a>
+                        <a href="https://school-management-system-alpha-umber.vercel.app/admin" class="project-link secondary">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live Demo
+                        </a>
+                    </div>
                 </div>
                 
                 <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-film"></i>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fab fa-dollar-sign"></i>
+                        </div>
                     </div>
-                    <h3>Simple Movie Site</h3>
-                    <p>A movie streaming website built with Next.js and TailwindCSS featuring movie browsing and search functionality.</p>
-                    <a href="https://github.com/syedraihanali/simple-movie-site" class="project-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                        View on GitHub
-                    </a>
+                    <div class="project-content">
+                        <h3>Price Table React</h3>
+                        <p>A customizable pricing table component built with React and TailwindCSS. Easily integrates into any project to display pricing plans with modern, responsive design.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">TailwindCSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://github.com/syedraihanali/Pricing-table-react" class="project-link primary" target="_blank">
+                            <i class="fab fa-github"></i>
+                            View Code
+                        </a>
+                    </div>
                 </div>
                 
                 <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-blog"></i>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
                     </div>
-                    <h3>Code Info</h3>
-                    <p>A simple blog site built with TypeScript for sharing coding tutorials, tips, and programming insights.</p>
-                    <a href="https://github.com/syedraihanali/code-info" class="project-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                        View on GitHub
-                    </a>
+                    <div class="project-content">
+                        <h3>Netflix Clone</h3>
+                        <p>A simple Netflix-inspired movie streaming site built with HTML, CSS, and JavaScript. Features a modern UI, movie browsing, and responsive design for an immersive viewing experience.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Nextjs</span>
+                            <span class="tech-tag">TailwindCSS</span>
+                            <span class="tech-tag">Primsa</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://github.com/syedraihanali/simple-movie-site" class="project-link primary" target="_blank">
+                            <i class="fab fa-github"></i>
+                            View Code
+                        </a>
+                    </div>
                 </div>
                 
                 <div class="project-card">
-                    <div class="project-icon">
-                        <i class="fas fa-dollar-sign"></i>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
                     </div>
-                    <h3>Pricing Table React</h3>
-                    <p>A responsive pricing table component built with React and JavaScript featuring modern design and animations.</p>
-                    <a href="https://github.com/syedraihanali/Pricing-table-react" class="project-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                        View on GitHub
-                    </a>
+                    <div class="project-content">
+                        <h3>More Projects</h3>
+                        <p>Explore my complete collection of web development projects, experiments, and contributions on GitHub showcasing various technologies.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Various</span>
+                            <span class="tech-tag">Technologies</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://github.com/syedraihanali" class="project-link primary" target="_blank">
+                            <i class="fab fa-github"></i>
+                            View All
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h3>Email</h3>
-                            <a href="mailto:syedraihanali65@gmail.com">syedraihanali65@gmail.com</a>
-                        </div>
-                    </div>
+                    <a href="mailto:syedraihanali65@gmail.com" class="contact-item">
+                        <img src="assets/icons/email.svg" alt="Email" class="contact-icon" loading="lazy" width="24" height="24">
+                        <h3>Email</h3>
+                        <span>syedraihanali65@gmail.com</span>
+                    </a>
                     
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h3>Phone</h3>
-                            <a href="tel:+8801841626387">+8801841626387</a>
-                        </div>
-                    </div>
+                    <a href="tel:+8801841626387" class="contact-item">
+                        <img src="assets/icons/phone.svg" alt="Phone" class="contact-icon" loading="lazy" width="24" height="24">
+                        <h3>Phone</h3>
+                        <span>+8801841-626387</span>
+                    </a>
                     
-                    <div class="contact-item">
-                        <i class="fab fa-github"></i>
-                        <div>
-                            <h3>GitHub</h3>
-                            <a href="https://github.com/syedraihanali" target="_blank">syedraihanali</a>
-                        </div>
-                    </div>
+                    <a href="https://github.com/syedraihanali" target="_blank" class="contact-item" rel="noopener">
+                        <img src="assets/icons/github.svg" alt="GitHub" class="contact-icon" loading="lazy" width="24" height="24">
+                        <h3>GitHub</h3>
+                        <span>syedraihanali</span>
+                    </a>
                     
-                    <div class="contact-item">
-                        <i class="fab fa-linkedin"></i>
-                        <div>
-                            <h3>LinkedIn</h3>
-                            <a href="https://www.linkedin.com/in/syedraihanali/" target="_blank">syedraihanali</a>
-                        </div>
-                    </div>
+                    <a href="https://www.linkedin.com/in/syedraihanali/" target="_blank" class="contact-item" rel="noopener">
+                        <img src="assets/icons/linkedin.svg" alt="LinkedIn" class="contact-icon" loading="lazy" width="24" height="24">
+                        <h3>LinkedIn</h3>
+                        <span>syedraihanali</span>
+                    </a>
                 </div>
                 
                 <div class="social-links">
-                    <a href="https://github.com/syedraihanali" target="_blank" class="social-link">
-                        <i class="fab fa-github"></i>
+                    <a href="https://github.com/syedraihanali" target="_blank" class="social-link" rel="noopener" aria-label="Visit GitHub profile">
+                        <i class="fab fa-github" aria-hidden="true"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/syedraihanali/" target="_blank" class="social-link">
-                        <i class="fab fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/syedraihanali/" target="_blank" class="social-link" rel="noopener" aria-label="Visit LinkedIn profile">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
                     </a>
-                    <a href="mailto:syedraihanali65@gmail.com" class="social-link">
-                        <i class="fas fa-envelope"></i>
+                    <a href="mailto:syedraihanali65@gmail.com" class="social-link" aria-label="Send email">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -273,12 +482,10 @@
         </div>
     </footer>
 
-    <!-- Scroll to Top Button -->
-    <button id="scrollTop" class="scroll-top">
-        <i class="fas fa-arrow-up"></i>
+    <button id="scrollTop" class="scroll-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
-    <!-- JavaScript -->
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
 </body>
 </html>
