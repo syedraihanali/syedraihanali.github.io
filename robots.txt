@@ -1,0 +1,11 @@
+# Robots.txt for syedraihanali.github.io
+# Portfolio Website of Syed Raihan Ali
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://syedraihanali.github.io/sitemap.xml
+
+# Crawl-delay (optional, for polite crawling)
+Crawl-delay: 1
