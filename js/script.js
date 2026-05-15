@@ -1,389 +1,427 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Initialize all functionality
-    initNavbar();
-    initScrollAnimations();
-    initScrollToTop();
-    initSmoothScrolling();
-    initLoadAnimations();
-    initLazyLoading();
-    initMobileOptimizations();
-    // initDarkMode(); // Disabled
-    hideLoadingScreen();
-});
+/* ============================================================
+   Portfolio v2 — interactions
+   - Reveal-on-scroll (IntersectionObserver, no library)
+   - Mobile nav toggle
+   - Active nav-link highlighter
+   - Live GitHub card with 1h localStorage cache
+   - Formspree async contact submit
+   ============================================================ */
 
-function hideLoadingScreen() {
-    const loading = document.getElementById('loading');
-    const minimumLoadTime = 800;
+(() => {
+    'use strict';
 
-    setTimeout(() => {
-        loading.classList.add('fade-out');
-        setTimeout(() => {
-            loading.style.display = 'none';
-        }, 500);
-    }, minimumLoadTime);
-}
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function initMobileOptimizations() {
-    const viewportMeta = document.querySelector('meta[name="viewport"]');
-    if (viewportMeta) {
-        const content = viewportMeta.getAttribute('content');
-        viewportMeta.setAttribute('content', content + ', user-scalable=no');
-
-        setTimeout(() => {
-            viewportMeta.setAttribute('content', content);
-        }, 1000);
-    }
-
-    window.addEventListener('orientationchange', function () {
-        setTimeout(() => {
-            window.scrollTo(0, 0);
-        }, 100);
-    });
-
-    const skillItems = document.querySelectorAll('.skill-item');
-    skillItems.forEach(item => {
-        let touchTimeout;
-
-        item.addEventListener('touchstart', function () {
-            touchTimeout = setTimeout(() => {
-                // Show tooltip on long press
-                this.classList.add('show-tooltip');
-            }, 500);
-        });
-
-        item.addEventListener('touchend', function () {
-            clearTimeout(touchTimeout);
-            setTimeout(() => {
-                this.classList.remove('show-tooltip');
-            }, 2000);
-        });
-    });
-
-    if ('scrollBehavior' in document.documentElement.style) {
-        document.documentElement.style.scrollBehavior = 'smooth';
-    }
-}
-
-function initLazyLoading() {
-    const images = document.querySelectorAll('img[loading="lazy"]');
-
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
+    /* ---------- Reveal-on-scroll ---------- */
+    const reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !prefersReducedMotion) {
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.src;
-                    img.classList.remove('lazy');
-                    imageObserver.unobserve(img);
+                    entry.target.classList.add('is-visible');
+                    io.unobserve(entry.target);
                 }
             });
-        }, {
-            rootMargin: '50px'
-        });
-
-        images.forEach(img => imageObserver.observe(img));
-    }
-}
-
-function initNavbar() {
-    const navbar = document.getElementById('navbar');
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
-        } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-        }
-    });
-
-    hamburger.addEventListener('click', (e) => {
-        e.preventDefault();
-        navMenu.classList.toggle('active');
-        hamburger.classList.toggle('active');
-
-        if (navMenu.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-
-        const spans = hamburger.querySelectorAll('span');
-        if (hamburger.classList.contains('active')) {
-            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-        } else {
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
-            document.body.style.overflow = '';
-
-            const spans = hamburger.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        });
-    });
-
-    document.addEventListener('click', (e) => {
-        if (!navbar.contains(e.target) && navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
-            document.body.style.overflow = '';
-
-            // Reset hamburger animation
-            const spans = hamburger.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        }
-    });
-
-    window.addEventListener('scroll', highlightActiveNavLink);
-
-    highlightActiveNavLink();
-}
-
-function highlightActiveNavLink() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    let current = '';
-    const scrollY = window.scrollY;
-    const windowHeight = window.innerHeight;
-
-    if (scrollY < 100) {
-        current = 'home';
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        reveals.forEach((el) => io.observe(el));
     } else {
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            const sectionId = section.getAttribute('id');
+        reveals.forEach((el) => el.classList.add('is-visible'));
+    }
 
-            if (scrollY >= (sectionTop - windowHeight / 3) &&
-                scrollY < (sectionTop + sectionHeight - windowHeight / 3)) {
-                current = sectionId;
-            }
+    /* ---------- Mobile nav toggle ---------- */
+    const nav = document.getElementById('nav');
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('nav-menu');
+
+    if (toggle && nav && menu) {
+        const close = () => {
+            nav.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+        };
+        toggle.addEventListener('click', () => {
+            const open = nav.classList.toggle('is-open');
+            toggle.setAttribute('aria-expanded', String(open));
+        });
+        menu.addEventListener('click', (e) => {
+            if (e.target.matches('a')) close();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') close();
         });
     }
 
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-    });
+    /* ---------- Active nav-link on scroll ---------- */
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = Array.from(navLinks)
+        .map((link) => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean);
 
-    if (current) {
-        const activeLink = document.querySelector(`.nav-link[href="#${current}"]`);
-        if (activeLink) {
-            activeLink.classList.add('active');
-        }
+    if ('IntersectionObserver' in window && sections.length) {
+        const setActive = (id) => {
+            navLinks.forEach((link) => {
+                const match = link.getAttribute('href') === '#' + id;
+                if (match) link.setAttribute('aria-current', 'true');
+                else link.removeAttribute('aria-current');
+            });
+        };
+        const navObserver = new IntersectionObserver((entries) => {
+            const visible = entries
+                .filter((e) => e.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+            if (visible) setActive(visible.target.id);
+        }, { rootMargin: '-40% 0px -55% 0px', threshold: [0, 0.25, 0.5] });
+        sections.forEach((s) => navObserver.observe(s));
     }
-}
 
-function initScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    /* ---------- Live GitHub card ---------- */
+    const ghCard = document.getElementById('gh-card');
+    if (ghCard) {
+        const user = ghCard.dataset.ghUser || 'syedraihanali';
+        const CACHE_KEY = `gh-cache-${user}-v2`;
+        const CACHE_TTL = 60 * 60 * 1000; // 1 hour
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+        const elContrib = ghCard.querySelector('[data-gh-contributions]');
+        const elFollowers = ghCard.querySelector('[data-gh-followers]');
+        const elEvents = ghCard.querySelector('[data-gh-events]');
+        const elRefresh = ghCard.querySelector('[data-gh-refresh]');
+        const elHeatmap = ghCard.querySelector('[data-gh-heatmap]');
 
-                if (entry.target.classList.contains('project-card') ||
-                    entry.target.classList.contains('skill-item') ||
-                    entry.target.classList.contains('contact-item')) {
+        const relTime = (iso) => {
+            const diff = Date.now() - new Date(iso).getTime();
+            const m = Math.round(diff / 60000);
+            if (m < 1) return 'just now';
+            if (m < 60) return `${m}m ago`;
+            const h = Math.round(m / 60);
+            if (h < 24) return `${h}h ago`;
+            const d = Math.round(h / 24);
+            if (d < 30) return `${d}d ago`;
+            const mo = Math.round(d / 30);
+            return `${mo}mo ago`;
+        };
 
-                    const siblings = Array.from(entry.target.parentNode.children);
-                    const index = siblings.indexOf(entry.target);
-                    entry.target.style.transitionDelay = `${index * 0.1}s`;
-                }
+        const escapeHtml = (str) => String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+
+        const truncate = (str, n) => (str.length > n ? str.slice(0, n - 1) + '…' : str);
+
+        const formatNum = (n) => (typeof n === 'number' ? n.toLocaleString('en-US') : '—');
+
+        const renderHeatmap = (contributions) => {
+            if (!Array.isArray(contributions) || !contributions.length) {
+                elHeatmap.innerHTML = '';
+                return;
             }
-        });
-    }, observerOptions);
+            // First cell needs to start on the correct day-of-week row.
+            // CSS uses grid-auto-flow: column; row 1 = Sunday.
+            const firstDate = new Date(contributions[0].date);
+            const startDay = firstDate.getDay(); // 0=Sun..6=Sat
+            const cells = [];
+            for (let i = 0; i < startDay; i++) {
+                cells.push('<span class="gh-day" data-level="0" aria-hidden="true" style="visibility:hidden"></span>');
+            }
+            for (const day of contributions) {
+                const lvl = Math.max(0, Math.min(4, day.level || 0));
+                const label = `${day.count} contribution${day.count === 1 ? '' : 's'} on ${day.date}`;
+                cells.push(`<span class="gh-day" data-level="${lvl}" title="${label}" aria-label="${label}"></span>`);
+            }
+            elHeatmap.innerHTML = cells.join('');
+        };
 
-    const animatedElements = document.querySelectorAll('.project-card, .skill-item, .contact-item, .about-bio, .section-title');
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-}
+        const render = (data, fromCacheFlag) => {
+            elContrib.textContent = formatNum(data.total_contributions);
+            elFollowers.textContent = formatNum(data.followers);
 
-function initScrollToTop() {
-    const scrollTopBtn = document.getElementById('scrollTop');
+            renderHeatmap(data.contributions);
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            scrollTopBtn.classList.add('show');
+            if (data.events && data.events.length) {
+                elEvents.innerHTML = data.events.map((e) => `
+                    <li class="gh-event">
+                        <span>
+                            <strong>${escapeHtml(e.repo)}</strong>
+                            ${e.message ? `<span style="color:var(--text-soft)"> — ${escapeHtml(truncate(e.message, 60))}</span>` : ''}
+                            <time datetime="${e.created_at}">${relTime(e.created_at)}</time>
+                        </span>
+                    </li>
+                `).join('');
+            } else {
+                elEvents.innerHTML = '<li class="gh-event"><span style="color:var(--text-soft)">no recent public push events</span></li>';
+            }
+
+            elRefresh.textContent = fromCacheFlag ? `cached · ${relTime(data._fetchedAt)}` : 'just now';
+        };
+
+        const renderError = () => {
+            elContrib.textContent = '—';
+            elFollowers.textContent = '—';
+            elHeatmap.innerHTML = '<span style="color:var(--text-soft);font-family:var(--font-mono);font-size:0.78rem">heatmap unavailable</span>';
+            elEvents.innerHTML = '<li class="gh-event"><span style="color:var(--text-soft)">github data unavailable · <a href="https://github.com/' + user + '" target="_blank" rel="noopener" style="color:var(--accent-deep)">view profile ↗</a></span></li>';
+            elRefresh.textContent = 'offline';
+        };
+
+        const readCache = () => {
+            try {
+                const raw = localStorage.getItem(CACHE_KEY);
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                if (Date.now() - parsed._fetchedAt > CACHE_TTL) return null;
+                return parsed;
+            } catch (_) { return null; }
+        };
+
+        const saveCache = (data) => {
+            try { localStorage.setItem(CACHE_KEY, JSON.stringify(data)); } catch (_) {}
+        };
+
+        const fetchFresh = async () => {
+            const headers = { 'Accept': 'application/vnd.github+json' };
+            const [userRes, eventsRes, contribRes] = await Promise.all([
+                fetch(`https://api.github.com/users/${user}`, { headers }),
+                fetch(`https://api.github.com/users/${user}/events/public?per_page=10`, { headers }),
+                fetch(`https://github-contributions-api.jogruber.de/v4/${user}?y=last`),
+            ]);
+            if (!userRes.ok) throw new Error(`HTTP user ${userRes.status}`);
+            const profile = await userRes.json();
+            const events = eventsRes.ok ? await eventsRes.json() : [];
+            const contrib = contribRes.ok ? await contribRes.json() : null;
+
+            const pushEvents = (Array.isArray(events) ? events : [])
+                .filter((e) => e.type === 'PushEvent')
+                .slice(0, 2)
+                .map((e) => ({
+                    repo: e.repo?.name?.split('/')?.[1] || e.repo?.name || 'repo',
+                    message: e.payload?.commits?.[0]?.message || '',
+                    created_at: e.created_at,
+                }));
+
+            return {
+                followers: profile.followers,
+                total_contributions: contrib?.total?.lastYear ?? null,
+                contributions: contrib?.contributions ?? [],
+                events: pushEvents,
+                _fetchedAt: Date.now(),
+            };
+        };
+
+        const cached = readCache();
+        if (cached) {
+            render(cached, true);
         } else {
-            scrollTopBtn.classList.remove('show');
+            fetchFresh()
+                .then((data) => { saveCache(data); render(data, false); })
+                .catch((err) => { console.warn('GitHub fetch failed:', err); renderError(); });
         }
-    });
+    }
 
-    scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
+    /* ---------- Contact form: validation + rate limit + Formspree ---------- */
+    const form = document.getElementById('contact-form');
+    if (form) {
+        const status = form.querySelector('.form-status');
+        const submitBtn = form.querySelector('button[type="submit"]');
 
-function initSmoothScrolling() {
-    const links = document.querySelectorAll('a[href^="#"]');
+        const fields = {
+            name:    form.querySelector('#cf-name'),
+            email:   form.querySelector('#cf-email'),
+            message: form.querySelector('#cf-message'),
+        };
 
-    links.forEach(link => {
-        link.addEventListener('click', (e) => {
+        const errorEls = {
+            name:    form.querySelector('[data-error-for="cf-name"]'),
+            email:   form.querySelector('[data-error-for="cf-email"]'),
+            message: form.querySelector('[data-error-for="cf-message"]'),
+        };
+
+        const counterEl = form.querySelector('[data-counter-for="cf-message"]');
+
+        // Rate-limit constants
+        const RL_KEY = 'contact-form-rl';
+        const RL_MIN_INTERVAL = 30 * 1000;          // 30s between submissions
+        const RL_WINDOW = 60 * 60 * 1000;            // 1 hour rolling window
+        const RL_MAX_PER_WINDOW = 3;                 // max 3 successful sends / hour
+
+        // Validators return null on success or an error message string.
+        const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        const URL_RE   = /\b(https?:\/\/|www\.)\S+/i;
+        const validators = {
+            name: (v) => {
+                v = v.trim();
+                if (!v) return 'Please enter your name.';
+                if (v.length < 2) return 'Name is too short.';
+                if (v.length > 80) return 'Name is too long.';
+                if (URL_RE.test(v)) return 'No URLs in the name field.';
+                return null;
+            },
+            email: (v) => {
+                v = v.trim();
+                if (!v) return 'Please enter your email.';
+                if (v.length > 120) return 'Email is too long.';
+                if (!EMAIL_RE.test(v)) return 'That email looks off — check it again.';
+                return null;
+            },
+            message: (v) => {
+                const t = v.trim();
+                if (!t) return 'Please write a message.';
+                if (t.length < 10) return `A bit more, please (${t.length}/10 chars).`;
+                if (t.length > 2000) return 'Message is too long (max 2000).';
+                // crude link-spam heuristic — more than 3 URLs is almost always spam
+                const urlMatches = t.match(/\bhttps?:\/\/\S+/gi) || [];
+                if (urlMatches.length > 3) return 'Too many links — please trim them down.';
+                return null;
+            },
+        };
+
+        const setStatus = (msg, kind) => {
+            if (!status) return;
+            status.textContent = msg;
+            status.classList.remove('success', 'error', 'warn');
+            if (kind) status.classList.add(kind);
+        };
+
+        const setFieldError = (name, msg) => {
+            const input = fields[name];
+            const errEl = errorEls[name];
+            if (msg) {
+                input.classList.add('is-invalid');
+                input.setAttribute('aria-invalid', 'true');
+                errEl.textContent = msg;
+            } else {
+                input.classList.remove('is-invalid');
+                input.removeAttribute('aria-invalid');
+                errEl.textContent = '';
+            }
+        };
+
+        const validateField = (name) => {
+            const msg = validators[name](fields[name].value);
+            setFieldError(name, msg);
+            return msg === null;
+        };
+
+        const validateAll = () => {
+            let firstInvalid = null;
+            for (const name of Object.keys(fields)) {
+                const ok = validateField(name);
+                if (!ok && !firstInvalid) firstInvalid = fields[name];
+            }
+            if (firstInvalid) firstInvalid.focus();
+            return !firstInvalid;
+        };
+
+        // Live validation: clear errors as the user types, validate on blur
+        for (const name of Object.keys(fields)) {
+            fields[name].addEventListener('blur', () => validateField(name));
+            fields[name].addEventListener('input', () => {
+                if (fields[name].classList.contains('is-invalid')) {
+                    validateField(name);
+                }
+            });
+        }
+
+        // Message character counter
+        if (counterEl) {
+            const update = () => {
+                const len = fields.message.value.length;
+                counterEl.textContent = `${len} / 2000`;
+                counterEl.classList.toggle('is-near-limit', len >= 1700 && len < 2000);
+                counterEl.classList.toggle('is-at-limit', len >= 2000);
+            };
+            fields.message.addEventListener('input', update);
+            update();
+        }
+
+        // Rate-limit helpers
+        const readRL = () => {
+            try {
+                const raw = localStorage.getItem(RL_KEY);
+                if (!raw) return [];
+                const arr = JSON.parse(raw);
+                return Array.isArray(arr) ? arr.filter((t) => Date.now() - t < RL_WINDOW) : [];
+            } catch (_) { return []; }
+        };
+        const writeRL = (arr) => {
+            try { localStorage.setItem(RL_KEY, JSON.stringify(arr)); } catch (_) {}
+        };
+        const checkRL = () => {
+            const sends = readRL();
+            const now = Date.now();
+            if (sends.length >= RL_MAX_PER_WINDOW) {
+                const oldest = Math.min(...sends);
+                const waitMs = RL_WINDOW - (now - oldest);
+                const mins = Math.ceil(waitMs / 60000);
+                return { ok: false, msg: `You've hit the hourly limit (${RL_MAX_PER_WINDOW} messages). Try again in ~${mins} min, or email directly.` };
+            }
+            const last = sends.length ? Math.max(...sends) : 0;
+            const since = now - last;
+            if (last && since < RL_MIN_INTERVAL) {
+                const wait = Math.ceil((RL_MIN_INTERVAL - since) / 1000);
+                return { ok: false, msg: `Easy there — please wait ${wait}s before sending another message.` };
+            }
+            return { ok: true };
+        };
+
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const targetId = link.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
+            // Honeypot — bot caught
+            const gotcha = form.querySelector('[name="_gotcha"]');
+            if (gotcha && gotcha.value.trim()) {
+                setStatus('Thanks!', 'success');
+                form.reset();
+                return;
+            }
 
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 70;
+            // Rate limit (before validation, so we don't waste cycles)
+            const rl = checkRL();
+            if (!rl.ok) {
+                setStatus(rl.msg, 'warn');
+                return;
+            }
 
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
+            // Per-field validation
+            if (!validateAll()) {
+                setStatus('Please fix the highlighted fields.', 'error');
+                return;
+            }
+
+            const action = form.getAttribute('action') || '';
+            if (action.includes('YOUR_FORM_ID')) {
+                setStatus("Form not configured yet — replace YOUR_FORM_ID in index.html with your Formspree endpoint.", 'error');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            const originalLabel = submitBtn.innerHTML;
+            submitBtn.innerHTML = 'Sending…';
+            setStatus('');
+
+            try {
+                const data = new FormData(form);
+                const res = await fetch(action, {
+                    method: 'POST',
+                    body: data,
+                    headers: { 'Accept': 'application/json' },
                 });
+                if (res.ok) {
+                    // Record successful send for rate-limit window
+                    const sends = readRL();
+                    sends.push(Date.now());
+                    writeRL(sends);
+                    setStatus("Message sent — I'll reply within a day or two.", 'success');
+                    form.reset();
+                    if (counterEl) counterEl.textContent = '0 / 2000';
+                } else {
+                    const json = await res.json().catch(() => ({}));
+                    const msg = json?.errors?.map((x) => x.message).join(', ') || `Couldn't send (HTTP ${res.status}).`;
+                    setStatus(msg, 'error');
+                }
+            } catch (err) {
+                setStatus('Network error — try again or email me directly.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalLabel;
             }
         });
-    });
-}
-
-function initLoadAnimations() {
-    const heroElements = document.querySelectorAll('.hero .fade-in');
-    heroElements.forEach((element, index) => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(30px)';
-        element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-
-        setTimeout(() => {
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
-        }, 200 + (index * 200));
-    });
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    const buttons = document.querySelectorAll('.btn');
-
-    buttons.forEach(button => {
-        button.addEventListener('mouseenter', function () {
-            this.style.transform = 'translateY(-2px)';
-        });
-
-        button.addEventListener('mouseleave', function () {
-            this.style.transform = 'translateY(0)';
-        });
-    });
-});
-
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.innerHTML = '';
-
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
     }
-
-    type();
-}
-
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroImage = document.querySelector('.hero-image');
-
-    if (heroImage && scrolled < window.innerHeight) {
-        heroImage.style.transform = `translateY(${scrolled * 0.2}px)`;
-    }
-});
-
-window.addEventListener('load', () => {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.3s ease';
-
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 100);
-});
-
-function throttle(func, limit) {
-    let inThrottle;
-    return function () {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    }
-}
-
-window.addEventListener('scroll', throttle(() => {
-    highlightActiveNavLink();
-}, 16));
-
-function initDarkMode() {
-    const darkModeToggle = document.createElement('button');
-    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-    darkModeToggle.className = 'dark-mode-toggle';
-    darkModeToggle.style.cssText = `
-        position: fixed;
-        top: 50%;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #6366f1, #8b5cf6);
-        color: white;
-        border: none;
-        cursor: pointer;
-        z-index: 1001;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-        font-size: 1.2rem;
-    `;
-
-    document.body.appendChild(darkModeToggle);
-
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-theme');
-        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    }
-
-    darkModeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-theme');
-
-        if (document.body.classList.contains('dark-theme')) {
-            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            localStorage.setItem('theme', 'dark');
-        } else {
-            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            localStorage.setItem('theme', 'light');
-        }
-    });
-}
+})();

@@ -1,245 +1,146 @@
-# 💼 Syed Raihan Ali - Portfolio
+# syedraihanali.github.io
 
-A modern, responsive portfolio website showcasing my journey as a **Full Stack Developer** specializing in **TypeScript**, **React.js**, and **Next.js**. Built with clean, optimized code and deployed on GitHub Pages.
+Personal portfolio of **Syed Raihan Ali** — Flutter & Full-Stack Developer based in Dhaka, Bangladesh.
+Stack lead at Softvence Agency.
 
-> 🌐 **Live Site**: [https://syedraihanali.github.io/](https://syedraihanali.github.io/)
+**Live:** <https://syedraihanali.github.io/>
 
-## 🚀 About This Portfolio
+---
 
-This portfolio represents my technical skills, projects, and professional experience as a developer from Bangladesh. It's built with modern web technologies and optimized for performance, accessibility, and SEO.
+## What's in this repo
 
-## ✨ What You'll Find Here
+A single-page, vanilla HTML / CSS / JS portfolio. No build step, no framework — just static files served straight from GitHub Pages.
 
-- **🏠 Hero Section**: Personal introduction with my role as a Full Stack Developer
-- **👨‍💻 About Me**: My journey in web development and competitive programming
-- **🛠️ Skills**: Interactive showcase of technologies I work with:
-  - **Frontend**: React.js, Next.js, TypeScript, JavaScript, TailwindCSS
-  - **Backend & Mobile**: Node.js, Flutter
-  - **Programming**: Python, C++, Bash
-  - **Tools**: Git, GitLab, VS Code, JetBrains IDEs, Vim
-  - **OS**: Linux, Windows
-- **📱 Projects**: Featured repositories from my GitHub including movie sites, blogs, and more
-- **📞 Contact**: Multiple ways to connect with me
+The page covers:
 
-## 🎯 Key Features
+| Section | Notes |
+|---|---|
+| Hero | Name, role, CTAs, professional headshot, **live GitHub card** |
+| About | Short bio + a "currently" snapshot card |
+| Experience | Softvence Agency (Flutter dev / stack lead) and Bit to Byte (IT support) |
+| Skills | 30+ tools as colourful SVG icons across 5 categories |
+| Projects | 5 selected projects + link to full GitHub profile |
+| Contact | Formspree-backed form + direct contact links |
 
-### 🎨 Design & User Experience
-- **Glassmorphism UI**: Modern design with backdrop blur effects and smooth gradients
-- **Mobile-First**: Fully responsive across all devices with touch optimizations
-- **Interactive Elements**: Skill tooltips, hover effects, and smooth animations
-- **Dark Theme Ready**: Professional color scheme optimized for readability
+---
 
-### ⚡ Performance & Technical Excellence
-- **Clean Production Code**: Comment-free, optimized CSS and JavaScript
-- **SEO Optimized**: Complete meta tags, Open Graph, Twitter Cards, and JSON-LD structured data
-- **Accessibility**: WCAG 2.1 AA compliant with proper ARIA labels
-- **Fast Loading**: Critical CSS inlined, lazy loading, and optimized assets
-- **GitHub Pages Ready**: Zero-config deployment with relative paths
+## Notable features
 
-### 🛠️ Technical Implementation
-- **Pure Vanilla Stack**: HTML5, CSS3, JavaScript ES6+ (no frameworks)
-- **Modern CSS**: Grid, Flexbox, Custom Properties, and advanced animations
-- **Progressive Enhancement**: Works perfectly without JavaScript
-- **Cross-Browser**: Compatible with all modern browsers including mobile
+- **Bento grid layout** with frosted-glass tiles and a light aurora background.
+- **Self-hosted variable fonts** ([Geist Sans](https://vercel.com/font) + Geist Mono, served as `woff2` from `assets/fonts/`) — no Google Fonts request, instant first paint.
+- **Live GitHub data** — total contributions in the last year, follower count, a 12-month contribution heatmap (sky-blue scale matching the theme), and the 2 most recent public push events. Fetched from the GitHub REST API + [github-contributions-api](https://github-contributions-api.jogruber.de/), cached in `localStorage` for 1 hour, with skeleton + offline fallback.
+- **Formspree contact form** with async submit, inline status messages, and a honeypot field for spam.
+- **Reveal-on-scroll** animations via `IntersectionObserver` (no library), with full `prefers-reduced-motion` support.
+- **SEO**: full meta + OG/Twitter tags, three JSON-LD blocks (`Person` + `WebSite` + `ProfilePage`), canonical link, `rel="me"` profile links, sitemap, robots.txt.
 
-## 📁 Project Structure
+---
+
+## Tech stack
+
+- HTML5
+- CSS3 (custom properties, grid, container queries via media queries)
+- JavaScript (ES2020+, no dependencies, no bundler)
+- Geist Sans + Geist Mono (self-hosted variable fonts)
+- 31 colourful SVG icons (devicon + simpleicons sources)
+
+No `package.json`, no `node_modules`. Open `index.html` in a browser and it works.
+
+---
+
+## File structure
 
 ```
-portfolio/
-├── index.html              # Main portfolio page with complete SEO
+syedraihanali.github.io/
+├── index.html                  # Single page; all sections + JSON-LD
 ├── css/
-│   └── style.css          # Production-ready styles (no comments)
+│   └── style.css               # ~1k lines, design tokens in :root
 ├── js/
-│   └── script.js          # Optimized interactions and animations
+│   └── script.js               # Reveal observer + GitHub card + Formspree
 ├── assets/
-│   ├── cv.pdf            # My resume/CV for download
-│   └── icons/            # SVG skill icons (22 technologies)
-│       ├── react.svg     # Frontend frameworks
-│       ├── nextjs.svg
-│       ├── typescript.svg
-│       ├── javascript.svg
-│       ├── tailwindcss.svg
-│       ├── nodejs.svg    # Backend & mobile
-│       ├── flutter.svg
-│       ├── python.svg    # Programming languages
-│       ├── cpp.svg
-│       ├── bash.svg
-│       ├── git.svg       # Version control
-│       ├── gitlab.svg
-│       ├── vscode.svg    # Development tools
-│       ├── jetbrains.svg
-│       ├── vim.svg
-│       ├── linux.svg     # Operating systems
-│       ├── windows.svg
-│       └── ... (contact icons)
-└── README.md             # This documentation
+│   ├── CV_Syed_Raihan_Ali.pdf  # Downloadable CV
+│   ├── fonts/
+│   │   ├── Geist-Variable.woff2
+│   │   └── GeistMono-Variable.woff2
+│   └── icons/                  # 31 colourful SVG icons (skill + contact)
+├── sitemap.xml
+├── robots.txt
+└── README.md
 ```
 
-## 🌟 Featured Projects
+---
 
-This portfolio showcases several key projects from my GitHub:
+## Local development
 
-- **🎬 Simple Movie Site**: Netflix-like streaming platform (Next.js, TypeScript, Prisma, NextAuth)
-- **📝 Code Info**: Modern blog platform (Next.js 13, Sanity CMS, TypeScript)
-- **💰 Pricing Table React**: Responsive pricing component (React, TailwindCSS)
-- **🌐 Portfolio React**: Previous React-based portfolio version
-- **📊 Portfolio Website**: This current portfolio (HTML, CSS, JS)
+No build step. Pick whichever server you have available:
 
-Each project demonstrates different aspects of my full-stack development skills.
-
-## 🚀 Quick Start
-
-### View Live
-Visit [https://syedraihanali.github.io/](https://syedraihanali.github.io/) to see the portfolio in action.
-
-### Local Development
 ```bash
-# Clone the repository
-git clone https://github.com/syedraihanali/portfolio.git
+# VS Code: Live Server extension → "Go Live"
 
-# Navigate to the project
-cd portfolio
-
-# Open with your preferred method:
-# Option 1: Direct file opening
-open index.html
-
-# Option 2: Local server (recommended)
-# Using Python
+# Python
 python -m http.server 8000
 
-# Using Node.js (if you have http-server installed)
-npx http-server
+# Node
+npx serve .
 
-# Using VS Code Live Server extension
-# Just open the folder and click "Go Live"
+# PHP
+php -S localhost:8000
 ```
 
-### Deploy Your Own Version
-1. **Fork** this repository
-2. **Customize** the content in `index.html`
-3. **Replace** `assets/cv.pdf` with your resume
-4. **Update** contact information and social links
-5. **Enable GitHub Pages** in repository settings
-6. **Your site** will be live at `https://yourusername.github.io/portfolio/`
-
-## 🎨 Customization Guide
-
-### Personal Information
-```html
-<!-- Update your details in index.html -->
-<h1 class="hero-name">Your Name</h1>
-<h2 class="hero-role">Your Title</h2>
-<p class="hero-tagline">Your unique value proposition...</p>
-
-<!-- Update the about section bio -->
-<p class="about-bio">Your personal story and expertise...</p>
-```
-
-### Skills & Technologies
-Add your skills by including SVG icons in `assets/icons/` and updating the skills grid:
-```html
-<div class="skill-category" data-category="Your Category">
-    <div class="skills-grid">
-        <div class="skill-item" data-skill="Technology Name">
-            <img src="assets/icons/tech.svg" alt="Technology" class="skill-icon">
-        </div>
-    </div>
-</div>
-```
-
-### Projects Section
-Replace the project cards with your own repositories:
-```html
-<div class="project-card">
-    <div class="project-header">
-        <div class="project-icon">
-            <i class="fas fa-your-icon"></i>
-        </div>
-    </div>
-    <div class="project-content">
-        <h3>Your Project Name</h3>
-        <p>Project description...</p>
-        <div class="project-tech">
-            <span class="tech-tag">Tech 1</span>
-            <span class="tech-tag">Tech 2</span>
-        </div>
-    </div>
-    <div class="project-footer">
-        <a href="your-github-link" class="project-link primary">View Code</a>
-    </div>
-</div>
-```
-
-### Contact Information
-Update all contact details throughout the file:
-- Email addresses
-- Phone numbers  
-- Social media links
-- GitHub username
-- LinkedIn profile
-
-### Styling & Colors
-The portfolio uses a modern blue-purple gradient scheme. You can customize colors in `css/style.css` by modifying the CSS custom properties and gradient values.
-
-## 📊 Technical Highlights
-
-- **🎯 SEO Score**: 100/100 with complete meta tag implementation
-- **♿ Accessibility**: WCAG 2.1 AA compliant with proper ARIA labels
-- **📱 Mobile Performance**: Optimized for touch devices with 44px+ touch targets
-- **⚡ Load Speed**: Critical CSS inlined, optimized assets, lazy loading
-- **🔍 Search Engine Ready**: JSON-LD structured data, Open Graph, Twitter Cards
-- **🌐 Cross-Browser**: Tested on Chrome, Firefox, Safari, Edge, and mobile browsers
-
-## 🛠️ Technologies Used
-
-**Core Stack:**
-- HTML5 (Semantic markup)
-- CSS3 (Grid, Flexbox, Custom Properties)
-- Vanilla JavaScript ES6+
-- Font Awesome 6.0 (Icons)
-- Google Fonts (Inter typeface)
-
-**Optimization Techniques:**
-- Critical CSS inlining
-- Lazy loading for images
-- Efficient CSS selectors
-- Hardware-accelerated animations
-- Touch gesture optimizations
-
-## 🤝 Connect With Me
-
-I'm always open to discussing new opportunities, collaborations, or just chatting about technology!
-
-**Syed Raihan Ali** - Full Stack Developer from Bangladesh
-
-- 🌐 **Portfolio**: [syedraihanali.github.io](https://syedraihanali.github.io/)
-- 📧 **Email**: [syedraihanali65@gmail.com](mailto:syedraihanali65@gmail.com)
-- 💼 **GitHub**: [@syedraihanali](https://github.com/syedraihanali)
-- 🔗 **LinkedIn**: [syedraihanali](https://www.linkedin.com/in/syedraihanali/)
-- 📱 **Phone**: +8801841-626387
-
-### Currently Working On
-- 🔍 Expanding my skills in competitive programming with C++
-- 📱 Building mobile applications with Flutter
-- 🌟 Contributing to open-source projects
-- 💼 Seeking opportunities with forward-thinking development teams
+Then open <http://localhost:8000/>.
 
 ---
 
-## � License
+## Configuration you'll want to do after forking
 
-This project is open source and available under the [MIT License](LICENSE). Feel free to use it as inspiration for your own portfolio!
+### 1. Wire up the contact form
 
-## 🙏 Acknowledgments
+In [`index.html`](./index.html), find the line:
 
-- Design inspiration from modern portfolio trends
-- Icons from various open-source icon libraries
-- Font Awesome for beautiful icons
-- Google Fonts for the Inter typeface
+```html
+<form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+```
+
+Create a free form at <https://formspree.io/forms> and replace `YOUR_FORM_ID` with your real form ID.
+The form is fully wired (async submit, validation, honeypot, status messages) — only that one ID needs swapping.
+
+### 2. Update the GitHub username
+
+The live GitHub card pulls data for `syedraihanali`. To use a different account, change `data-gh-user` on the `#gh-card` element in [`index.html`](./index.html):
+
+```html
+<div class="tile hero-stats" id="gh-card" data-gh-user="your-username">
+```
+
+### 3. Replace the CV
+
+Drop your CV PDF at `assets/CV_Syed_Raihan_Ali.pdf` (keep the filename so the existing download link works), or update the `href` on the "Download CV" button.
+
+### 4. Update content
+
+Personal info (name, role, bio, experience, projects, contact links) is hard-coded in [`index.html`](./index.html). Search for "Softvence" / "Bit to Byte" / "syedraihanali" to find what to replace.
+
+### 5. Theme colours
+
+All design tokens live at the top of [`css/style.css`](./css/style.css) under `:root`. Swap accent colours by changing `--accent`, `--accent-deep`, and the heatmap scale `--gh-1` … `--gh-4`.
 
 ---
 
-**⭐ If this portfolio helped inspire yours, consider giving it a star!**
+## Deployment
 
-*Built with passion using vanilla web technologies • Optimized for performance and accessibility • Always improving* 🚀
+GitHub Pages: push to `main` and it's live at `https://<username>.github.io/`.
+No GitHub Actions workflow needed — Pages serves the static files directly.
+
+---
+
+## Contact
+
+- Email — [syedraihanali65@gmail.com](mailto:syedraihanali65@gmail.com)
+- GitHub — [@syedraihanali](https://github.com/syedraihanali)
+- LinkedIn — [syedraihanali](https://www.linkedin.com/in/syedraihanali/)
+- Phone — +880 1841 626387
+
+---
+
+## License
+
+[MIT](./LICENSE) — free to fork, customise, and use as a starting point for your own portfolio. A link back is appreciated but not required.
