@@ -1,692 +1,1364 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K2D1MEGBL6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-K2D1MEGBL6');
-</script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Syed Raihan Ali — Flutter & Full-Stack Developer | Mobile Apps, React.js, Next.js, n8n Automation</title>
+    <!-- Theme + motion bootstrap: runs before paint so there is no flash of the wrong theme -->
+    <script>
+        (function () {
+            var d = document.documentElement;
+            d.classList.add('js');
+            try {
+                var t = localStorage.getItem('theme');
+                if (t === 'dark' || t === 'light') d.setAttribute('data-theme', t);
+            } catch (e) { }
+            // Safety net: if the main script fails to load, still show the hero.
+            setTimeout(function () { d.classList.add('is-ready'); }, 2500);
+        })();
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K2D1MEGBL6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-K2D1MEGBL6');
+    </script>
+
+    <title>Syed Raihan Ali · Flutter &amp; Full-Stack Developer</title>
     <meta name="description"
-        content="Syed Raihan Ali — Flutter & Full-Stack Developer in Dhaka, Bangladesh. Stack lead at Softvence Agency shipping production mobile apps to Play Store and App Store, Next.js / React.js web platforms, and n8n automation workflows.">
+        content="Syed Raihan Ali — Flutter & full-stack developer in Dhaka, Bangladesh. Stack lead at Softvence Agency building production mobile apps, Next.js web platforms, and n8n / AI automation.">
     <meta name="keywords"
-        content="Syed Raihan Ali, Flutter Developer, Full Stack Developer, Mobile App Developer, Dart, React.js, Next.js, TypeScript, JavaScript, Node.js, Express.js, Python, n8n Automation, Docker, MongoDB, PostgreSQL, Firebase, Supabase, AWS, Azure, GCP, REST APIs, Softvence Agency, Dhaka, Bangladesh, Portfolio">
+        content="Syed Raihan Ali, Flutter Developer, Full-Stack Developer, Mobile App Developer, Next.js, React, TypeScript, Node.js, Python, Django, n8n, Automation, OpenAI, Softvence Agency, Dhaka, Bangladesh, Portfolio">
     <meta name="author" content="Syed Raihan Ali">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="theme-color" content="#F2F8FE">
+    <meta name="format-detection" content="telephone=no">
 
-    <meta property="og:title" content="Syed Raihan Ali — Flutter & Full-Stack Developer">
-    <meta property="og:description"
-        content="Stack lead at Softvence Agency shipping Flutter mobile apps, Next.js / React.js web platforms, and n8n automation workflows from Dhaka, Bangladesh.">
-    <meta property="og:type" content="profile">
-    <meta property="og:url" content="https://syedraihanali.github.io/">
-    <meta property="og:image" content="https://avatars.githubusercontent.com/u/134129699?v=4">
-    <meta property="og:image:alt" content="Syed Raihan Ali — Flutter & Full-Stack Developer">
-    <meta property="og:site_name" content="Syed Raihan Ali Portfolio">
-    <meta property="og:locale" content="en_US">
-    <meta property="profile:first_name" content="Syed Raihan">
-    <meta property="profile:last_name" content="Ali">
-    <meta property="profile:username" content="syedraihanali">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Syed Raihan Ali — Flutter & Full-Stack Developer">
-    <meta name="twitter:description"
-        content="Stack lead at Softvence Agency. Flutter mobile apps, Next.js / React.js web, and n8n automations.">
-    <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/134129699?v=4">
-    <meta name="twitter:image:alt" content="Syed Raihan Ali — Flutter & Full-Stack Developer">
-
-    <meta name="theme-color" content="#FAFAF7" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)">
-    <meta name="color-scheme" content="light">
-    <meta name="geo.region" content="BD">
-    <meta name="geo.placename" content="Dhaka, Bangladesh">
-    <meta name="language" content="English">
-    <meta http-equiv="content-language" content="en">
-    <meta name="rating" content="general">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Syed Raihan Ali">
-
-    <link rel="canonical" href="https://syedraihanali.github.io/">
-    <link rel="alternate" href="https://tahirtaim.dev/" hreflang="en">
+    <link rel="canonical" href="https://syedraihanali.me/">
     <link rel="me" href="https://github.com/syedraihanali">
     <link rel="me" href="https://www.linkedin.com/in/syedraihanali/">
 
-    <link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/GeistMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preconnect" href="https://api.github.com">
-    <link rel="preconnect" href="https://avatars.githubusercontent.com" crossorigin>
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="Syed Raihan Ali">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://syedraihanali.me/">
+    <meta property="og:title" content="Syed Raihan Ali · Flutter & Full-Stack Developer">
+    <meta property="og:description"
+        content="Stack lead at Softvence Agency. I build Flutter mobile apps, Next.js web platforms, and n8n / AI automation — from the first client call to the App Store release.">
+    <meta property="og:image" content="https://syedraihanali.me/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Syed Raihan Ali — Flutter & Full-Stack Developer, Dhaka, Bangladesh">
+    <meta property="profile:first_name" content="Syed Raihan">
+    <meta property="profile:last_name" content="Ali">
+    <meta property="profile:username" content="syedraihanali">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Syed Raihan Ali · Flutter & Full-Stack Developer">
+    <meta name="twitter:description"
+        content="Flutter mobile apps, Next.js web platforms, and n8n / AI automation. Stack lead at Softvence Agency, Dhaka.">
+    <meta name="twitter:image" content="https://syedraihanali.me/assets/og-image.png">
+    <meta name="twitter:image:alt" content="Syed Raihan Ali — Flutter & Full-Stack Developer">
 
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230B1220%22/><path d=%22M9 11 L4 16 L9 21%22 stroke=%22%2338BDF8%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22/><path d=%22M23 11 L28 16 L23 21%22 stroke=%22%2338BDF8%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22/><path d=%22M19 9 L13 23%22 stroke=%22%230EA5E9%22 stroke-width=%222.4%22 stroke-linecap=%22round%22/></svg>">
-    <link rel="apple-touch-icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230B1220%22/><path d=%22M9 11 L4 16 L9 21%22 stroke=%22%2338BDF8%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22/><path d=%22M23 11 L28 16 L23 21%22 stroke=%22%2338BDF8%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22/><path d=%22M19 9 L13 23%22 stroke=%22%230EA5E9%22 stroke-width=%222.4%22 stroke-linecap=%22round%22/></svg>">
+    <!-- Icons -->
+    <link rel="icon" href="favicon.ico" sizes="32x32">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- Performance -->
+    <link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/InstrumentSerif-Italic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/img/raihan.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="preconnect" href="https://api.github.com" crossorigin>
+    <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+    <link rel="dns-prefetch" href="https://github-contributions-api.jogruber.de">
 
     <link rel="stylesheet" href="css/style.css">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "@id": "https://syedraihanali.github.io/#person",
-      "name": "Syed Raihan Ali",
-      "givenName": "Syed Raihan",
-      "familyName": "Ali",
-      "jobTitle": "Flutter & Full-Stack Developer",
-      "description": "Flutter & Full-Stack Developer at Softvence Agency in Dhaka, Bangladesh. Stack lead shipping production mobile apps to Play Store and App Store, Next.js / React.js web platforms, and n8n automation workflows.",
-      "url": "https://syedraihanali.github.io/",
-      "image": "https://avatars.githubusercontent.com/u/134129699?v=4",
-      "sameAs": [
-        "https://github.com/syedraihanali",
-        "https://www.linkedin.com/in/syedraihanali/",
-        "https://tahirtaim.dev/"
-      ],
-      "knowsAbout": [
-        "Flutter", "Dart", "Mobile App Development", "Cross-platform Development",
-        "TypeScript", "React.js", "Next.js", "JavaScript", "Node.js", "Express.js",
-        "Python", "C++", "TailwindCSS", "REST APIs", "n8n", "Workflow Automation",
-        "MongoDB", "PostgreSQL", "Firebase", "Supabase",
-        "Docker", "AWS", "Azure", "GCP", "Git", "Linux",
-        "Full Stack Development", "Web Development", "Clean Architecture",
-        "Competitive Programming", "Technical Team Leadership", "Client Communication"
-      ],
-      "knowsLanguage": [
-        { "@type": "Language", "name": "English" },
-        { "@type": "Language", "name": "Bengali" }
-      ],
-      "nationality": "Bangladeshi",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Dhaka",
-        "addressRegion": "Dhaka Division",
-        "addressCountry": "BD"
-      },
-      "email": "mailto:syedraihanali65@gmail.com",
-      "telephone": "+8801841626387",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Softvence Agency",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Mohakhali",
-          "addressLocality": "Dhaka",
-          "postalCode": "1206",
-          "addressCountry": "BD"
-        }
-      },
-      "alumniOf": [
+      "@graph": [
         {
-          "@type": "CollegeOrUniversity",
-          "name": "Primeasia University",
-          "department": "Computer Science and Engineering",
-          "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" }
+          "@type": "Person",
+          "@id": "https://syedraihanali.me/#person",
+          "name": "Syed Raihan Ali",
+          "givenName": "Syed Raihan",
+          "familyName": "Ali",
+          "jobTitle": "Flutter & Full-Stack Developer",
+          "description": "Flutter & full-stack developer in Dhaka, Bangladesh. Stack lead at Softvence Agency, shipping production mobile apps to Play Store and App Store, Next.js web platforms, and n8n / AI automation.",
+          "url": "https://syedraihanali.me/",
+          "image": "https://syedraihanali.me/assets/img/raihan.webp",
+          "email": "mailto:syedraihanali65@gmail.com",
+          "sameAs": [
+            "https://github.com/syedraihanali",
+            "https://www.linkedin.com/in/syedraihanali/"
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Dhaka",
+            "addressCountry": "BD"
+          },
+          "nationality": "Bangladeshi",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Softvence Agency",
+            "address": { "@type": "PostalAddress", "addressLocality": "Mohakhali, Dhaka", "addressCountry": "BD" }
+          },
+          "affiliation": {
+            "@type": "CollegeOrUniversity",
+            "name": "Primeasia University",
+            "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" }
+          },
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Faridpur Government College"
+          },
+          "knowsLanguage": ["Bengali", "English"],
+          "knowsAbout": [
+            "Flutter", "Dart", "Mobile App Development", "React", "Next.js", "TypeScript", "JavaScript",
+            "Node.js", "Express.js", "Python", "Django", "REST APIs", "n8n", "Workflow Automation", "OpenAI API",
+            "MongoDB", "PostgreSQL", "MySQL", "Firebase", "Supabase", "Redis", "Docker", "GitHub Actions",
+            "AWS", "Azure", "Google Cloud", "Git", "Linux", "C++", "Technical Team Leadership"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://syedraihanali.me/#website",
+          "url": "https://syedraihanali.me/",
+          "name": "Syed Raihan Ali",
+          "inLanguage": "en",
+          "publisher": { "@id": "https://syedraihanali.me/#person" }
+        },
+        {
+          "@type": "ProfilePage",
+          "url": "https://syedraihanali.me/",
+          "name": "Syed Raihan Ali · Flutter & Full-Stack Developer",
+          "isPartOf": { "@id": "https://syedraihanali.me/#website" },
+          "mainEntity": { "@id": "https://syedraihanali.me/#person" },
+          "dateModified": "2026-11-04"
         }
-      ],
-      "hasOccupation": {
-        "@type": "Occupation",
-        "name": "Flutter & Full-Stack Developer",
-        "occupationLocation": { "@type": "City", "name": "Dhaka, Bangladesh" },
-        "skills": "Flutter, Dart, React.js, Next.js, TypeScript, JavaScript, Node.js, Express.js, Python, C++, MongoDB, PostgreSQL, Firebase, Supabase, Docker, AWS, Azure, GCP, n8n, REST APIs, Git, Linux",
-        "responsibilities": "Stack lead for cross-functional team; full mobile app lifecycle from client meetings through Play Store / App Store release; n8n automation workflows; English-language client communication."
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "@id": "https://syedraihanali.github.io/#website",
-      "url": "https://syedraihanali.github.io/",
-      "name": "Syed Raihan Ali Portfolio",
-      "description": "Portfolio of Syed Raihan Ali — Flutter & Full-Stack Developer based in Dhaka, Bangladesh.",
-      "inLanguage": "en",
-      "publisher": { "@id": "https://syedraihanali.github.io/#person" }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfilePage",
-      "url": "https://syedraihanali.github.io/",
-      "mainEntity": { "@id": "https://syedraihanali.github.io/#person" },
-      "dateModified": "2026-05-15"
+      ]
     }
     </script>
 </head>
 
 <body>
-    <div class="aurora" aria-hidden="true">
-        <span class="aurora-blob"></span>
+    <!-- Icon sprite -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+            <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" /></symbol>
+            <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" /></symbol>
+            <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7" /></symbol>
+            <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" /></symbol>
+            <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" /></symbol>
+            <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></symbol>
+            <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></symbol>
+            <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></symbol>
+            <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 7.5 8.5 6 8.5-6" /></symbol>
+            <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></symbol>
+            <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></symbol>
+            <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2.5" /><path d="M5 15H4.5A1.5 1.5 0 0 1 3 13.5v-9A1.5 1.5 0 0 1 4.5 3h9A1.5 1.5 0 0 1 15 4.5V5" /></symbol>
+            <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></symbol>
+            <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z" /><path d="M22 2 11 13" /></symbol>
+            <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2.5 2.94 5.96 6.56.95-4.75 4.63 1.12 6.54L12 17.5l-5.87 3.08 1.12-6.54L2.5 9.41l6.56-.95Z" /></symbol>
+            <symbol id="i-fork" viewBox="0 0 24 24"><circle cx="12" cy="18" r="2.5" /><circle cx="6" cy="6" r="2.5" /><circle cx="18" cy="6" r="2.5" /><path d="M18 8.5v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1M12 11.5v4" /></symbol>
+            <symbol id="i-smartphone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5" /><path d="M11 18h2" /></symbol>
+            <symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2.5" /><path d="M3 9h18M9 21V9" /></symbol>
+            <symbol id="i-workflow" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" /><path d="M6.5 10v3.5a2 2 0 0 0 2 2H14" /><path d="M17.5 14v-3.5a2 2 0 0 0-2-2H10" /></symbol>
+            <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M9.94 15.5a2 2 0 0 0-1.44-1.44l-6.13-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.13a.5.5 0 0 1 .96 0l1.58 6.13a2 2 0 0 0 1.44 1.44l6.13 1.58a.5.5 0 0 1 0 .96l-6.13 1.58a2 2 0 0 0-1.44 1.44l-1.58 6.13a.5.5 0 0 1-.96 0Z" /><path d="M20 3v4M22 5h-4" /></symbol>
+            <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" /></symbol>
+            <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5Z" /><path d="M6 12v5c3 3 9 3 12 0v-5M22 10v6" /></symbol>
+            <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2.5" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M2 13h20" /></symbol>
+            <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6" /></symbol>
+            <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7l10-5Z" /><path d="m2 17 10 5 10-5M2 12l10 5 10-5" /></symbol>
+            <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" /><path d="m9 12 2 2 4-4" /></symbol>
+            <symbol id="i-film" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2.5" /><path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5" /></symbol>
+            <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9" /><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" /></symbol>
+            <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" /></symbol>
+            <symbol id="i-haze" viewBox="0 0 24 24"><path d="M4 14.9A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.24" /><path d="M16 17H7M17 21H9" /></symbol>
+            <symbol id="i-rain" viewBox="0 0 24 24"><path d="M4 14.9A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.24" /><path d="M16 14v6M8 14v6M12 16v6" /></symbol>
+            <symbol id="i-droplet" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5S5 13 5 15a7 7 0 0 0 7 7Z" /></symbol>
+            <symbol id="i-wind" viewBox="0 0 24 24"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2M9.6 4.6A2 2 0 1 1 11 8H2M12.6 19.4A2 2 0 1 0 14 16H2" /></symbol>
+            <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M22 12h-6l-2 3h-4l-2-3H2" /><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11Z" /></symbol>
+            <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" /><path d="M12 7v5l3 2" /></symbol>
+            <symbol id="i-api" viewBox="0 0 24 24"><path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1M16 3h1a2 2 0 0 1 2 2v5a2 2 0 0 0 2 2 2 2 0 0 0-2 2v5a2 2 0 0 1-2 2h-1" /></symbol>
+            <symbol id="i-message" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z" /></symbol>
+        </defs>
+    </svg>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+    <!-- Fixed sky backdrop -->
+    <div class="backdrop" aria-hidden="true">
+        <span class="aurora aurora-1"></span>
+        <span class="aurora aurora-2"></span>
+        <span class="aurora aurora-3"></span>
+        <span class="noise"></span>
     </div>
 
+    <!-- ============== NAV ============== -->
     <header class="nav" id="nav">
-        <div class="nav-inner">
-            <a href="#home" class="nav-logo" aria-label="Syed Raihan Ali — home">syedraihanali</a>
-            <nav class="nav-menu" id="nav-menu" aria-label="Primary">
-                <a href="#home" class="nav-link">Home</a>
+        <div class="nav-bar">
+            <a href="#home" class="brand" aria-label="Syed Raihan Ali — back to top">
+                <span class="brand-mark" aria-hidden="true">SR</span>
+                <span class="brand-name">Syed Raihan Ali</span>
+            </a>
+
+            <nav class="nav-links" aria-label="Primary">
+                <span class="nav-indicator" aria-hidden="true"></span>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#experience" class="nav-link">Experience</a>
-                <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
+                <a href="#skills" class="nav-link">Skills</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </nav>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
-                <span></span>
-            </button>
+
+            <div class="nav-actions">
+                <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme">
+                    <svg class="i i-sun" aria-hidden="true"><use href="#i-sun" /></svg>
+                    <svg class="i i-moon" aria-hidden="true"><use href="#i-moon" /></svg>
+                </button>
+                <a href="#contact" class="btn btn-primary btn-sm nav-cta">Let's talk</a>
+                <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false"
+                    aria-controls="mobile-menu" aria-label="Open menu">
+                    <span class="menu-lines" aria-hidden="true"><span></span><span></span></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="mobile-menu" id="mobile-menu" hidden>
+            <nav class="mobile-links" aria-label="Mobile">
+                <a href="#about"><span>01</span>About</a>
+                <a href="#experience"><span>02</span>Experience</a>
+                <a href="#projects"><span>03</span>Projects</a>
+                <a href="#skills"><span>04</span>Skills</a>
+                <a href="#contact"><span>05</span>Contact</a>
+            </nav>
+            <div class="mobile-foot">
+                <a href="mailto:syedraihanali65@gmail.com" class="mobile-mail">syedraihanali65@gmail.com</a>
+                <div class="social-row">
+                    <a class="icon-btn" href="https://github.com/syedraihanali" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg class="i" aria-hidden="true"><use href="#i-github" /></svg></a>
+                    <a class="icon-btn" href="https://www.linkedin.com/in/syedraihanali/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="i" aria-hidden="true"><use href="#i-linkedin" /></svg></a>
+                    <a class="icon-btn" href="mailto:syedraihanali65@gmail.com" aria-label="Email"><svg class="i" aria-hidden="true"><use href="#i-mail" /></svg></a>
+                </div>
+            </div>
         </div>
     </header>
 
-    <main>
+    <main id="main">
         <!-- ============== HERO ============== -->
-        <section id="home" class="container">
-            <div class="bento reveal">
-                <div class="tile hero-greeting">
-                    <p class="hero-hi">
-                        <span aria-hidden="true">$</span>
-                        <span>whoami</span>
+        <section id="home" class="hero" aria-label="Introduction">
+            <div class="hero-grid-bg" aria-hidden="true"></div>
+            <div class="container hero-inner">
+                <div class="hero-copy">
+                    <p class="hero-badge intro" style="--d:0">
+                        <span class="pulse" aria-hidden="true"></span>
+                        Open to new opportunities
                     </p>
-                    <div>
-                        <h1 class="hero-name">Syed Raihan Ali</h1>
-                        <p class="hero-role">Flutter &amp; Full-Stack Developer · Stack Lead @ Softvence Agency</p>
-                        <p class="hero-tagline">Building production mobile apps, modern web platforms, and n8n
-                            automation workflows — from first client call to App&nbsp;Store release.</p>
-                    </div>
-                    <div class="hero-cta">
-                        <a href="assets/CV_Syed_Raihan_Ali.pdf" class="btn btn-primary" download>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="7 10 12 15 17 10"></polyline>
-                                <line x1="12" y1="15" x2="12" y2="3"></line>
-                            </svg>
-                            Download CV
-                        </a>
-                        <a href="#contact" class="btn btn-secondary">
-                            Get in touch
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
 
-                <figure class="tile hero-portrait">
-                    <div class="hero-portrait-frame">
-                        <img src="https://avatars.githubusercontent.com/u/134129699?v=4"
-                            alt="Syed Raihan Ali — Flutter & Full-Stack Developer based in Dhaka, Bangladesh"
-                            width="320" height="320" fetchpriority="high" loading="eager">
-                    </div>
-                    <figcaption>
-                        <span class="hero-portrait-name">Syed Raihan Ali</span>
-                        <span class="hero-portrait-role">Flutter &amp; Full-Stack Developer</span>
-                        <span class="pulse-dot">open to work</span>
-                    </figcaption>
-                </figure>
+                    <h1 class="hero-title">
+                        <span class="hero-hi intro" style="--d:1">Hi, I'm</span>
+                        <span class="hero-name intro" style="--d:2">Syed Raihan Ali</span>
+                    </h1>
 
-                <div class="tile hero-stats" id="gh-card" data-gh-user="syedraihanali">
-                    <div class="gh-card-title">
-                        <span class="gh-card-title-text">live · github</span>
-                        <span class="gh-refresh" data-gh-refresh>loading…</span>
-                    </div>
-                    <div class="gh-stats">
-                        <div class="gh-stat">
-                            <span class="gh-stat-num" data-gh-contributions><span class="skel" style="display:inline-block;width:48px;height:1.2em">&nbsp;</span></span>
-                            <span class="gh-stat-label">contributions · last year</span>
-                        </div>
-                        <div class="gh-stat">
-                            <span class="gh-stat-num" data-gh-followers><span class="skel" style="display:inline-block;width:24px;height:1.2em">&nbsp;</span></span>
-                            <span class="gh-stat-label">followers</span>
-                        </div>
-                    </div>
-                    <div class="gh-heatmap-wrap" aria-label="GitHub contribution heatmap, last 12 months">
-                        <div class="gh-heatmap" data-gh-heatmap role="img" aria-label="contribution heatmap"></div>
-                    </div>
-                    <div class="gh-heatmap-legend">
-                        <span>less</span>
-                        <span class="gh-heatmap-legend-cells">
-                            <span></span><span></span><span></span><span></span><span></span>
+                    <p class="hero-role intro" style="--d:3">
+                        <span>Flutter &amp; Full-Stack Developer</span>
+                        <span class="hero-role-2">Stack Lead at Softvence Agency</span>
+                    </p>
+
+                    <p class="hero-lead intro" style="--d:4">
+                        I build
+                        <span class="rotator" aria-hidden="true">
+                            <span class="rotator-word is-active">mobile apps</span>
+                            <span class="rotator-word">web platforms</span>
+                            <span class="rotator-word">automation workflows</span>
+                            <span class="rotator-word">AI-powered tools</span>
                         </span>
-                        <span>more</span>
+                        <span class="sr-only">mobile apps, web platforms, automation workflows and AI-powered tools</span>
+                        that feel <em class="serif">effortless</em> — from the first client call to the App&nbsp;Store release.
+                    </p>
+
+                    <div class="hero-cta intro" style="--d:5">
+                        <a href="#projects" class="btn btn-primary btn-lg magnetic">
+                            View my work
+                            <svg class="i" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+                        </a>
+                        <a href="assets/CV_Syed_Raihan_Ali.pdf" class="btn btn-ghost btn-lg magnetic" download>
+                            Download CV
+                            <svg class="i" aria-hidden="true"><use href="#i-download" /></svg>
+                        </a>
                     </div>
-                    <ul class="gh-events" data-gh-events aria-label="Recent GitHub activity">
-                        <li class="gh-event"><span class="skel" style="display:block;width:90%;height:0.85rem">&nbsp;</span></li>
-                        <li class="gh-event"><span class="skel" style="display:block;width:75%;height:0.85rem">&nbsp;</span></li>
-                    </ul>
-                    <a href="https://github.com/syedraihanali" target="_blank" rel="noopener" class="gh-link">
-                        view profile →
-                    </a>
+
+                    <dl class="hero-stats intro" style="--d:6">
+                        <div class="hero-stat">
+                            <dt>Production apps shipped</dt>
+                            <dd><span data-count="5">5</span></dd>
+                        </div>
+                        <div class="hero-stat">
+                            <dt>n8n automation projects</dt>
+                            <dd><span data-count="3">3</span></dd>
+                        </div>
+                        <div class="hero-stat">
+                            <dt>Public GitHub repos</dt>
+                            <dd><span data-count="26" data-gh="repos">26</span></dd>
+                        </div>
+                    </dl>
                 </div>
+
+                <div class="hero-visual intro" style="--d:2">
+                    <div class="orbit" aria-hidden="true">
+                        <div class="orbit-ring ring-1">
+                            <span class="orbit-slot" style="--a:20deg"><span class="orbit-icon"><span><img src="assets/icons/flutter.svg" alt="" width="24" height="24"></span></span></span>
+                            <span class="orbit-slot" style="--a:110deg"><span class="orbit-icon"><span><img src="assets/icons/dart.svg" alt="" width="24" height="24"></span></span></span>
+                            <span class="orbit-slot" style="--a:200deg"><span class="orbit-icon"><span><img src="assets/icons/firebase.svg" alt="" width="24" height="24"></span></span></span>
+                            <span class="orbit-slot" style="--a:290deg"><span class="orbit-icon"><span><img src="assets/icons/python.svg" alt="" width="24" height="24"></span></span></span>
+                        </div>
+                        <div class="orbit-ring ring-2">
+                            <span class="orbit-slot" style="--a:0deg"><span class="orbit-icon"><span><img class="icon-mono" src="assets/icons/nextjs.svg" alt="" width="24" height="24"></span></span></span>
+                            <span class="orbit-slot" style="--a:72deg"><span class="orbit-icon"><span><img src="assets/icons/typescript.svg" alt="" width="24" height="24"></span></span></span>
+                            <span class="orbit-slot" style="--a:144deg"><span class="orbit-icon"><span><img src="assets/icons/n8n.svg" alt="" width="24" height="24"></span></span></span>
+                            <span class="orbit-slot" style="--a:216deg"><span class="orbit-icon"><span><img src="assets/icons/nodejs.svg" alt="" width="24" height="24"></span></span></span>
+                            <span class="orbit-slot" style="--a:288deg"><span class="orbit-icon"><span><img src="assets/icons/react.svg" alt="" width="24" height="24"></span></span></span>
+                        </div>
+                    </div>
+
+                    <figure class="portrait">
+                        <img src="assets/img/raihan.webp" alt="Portrait of Syed Raihan Ali" width="720" height="720"
+                            fetchpriority="high" decoding="async">
+                    </figure>
+
+                    <div class="float-card fc-1">
+                        <span class="fc-icon"><svg class="i" aria-hidden="true"><use href="#i-users" /></svg></span>
+                        <span class="fc-text"><strong>Stack Lead</strong><small>Softvence Agency</small></span>
+                    </div>
+                    <div class="float-card fc-2">
+                        <span class="fc-icon"><img src="assets/icons/flutter.svg" alt="" width="18" height="18"></span>
+                        <span class="fc-text"><strong>Shipping to stores</strong><small>Play Store · App Store</small></span>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#about" class="scroll-cue" aria-label="Scroll to About section">
+                <span class="mouse" aria-hidden="true"><span></span></span>
+            </a>
+        </section>
+
+        <!-- ============== TECH MARQUEE ============== -->
+        <section class="band" aria-label="Technologies I work with">
+            <div class="marquee">
+                <ul class="marquee-track">
+                    <li><img src="assets/icons/flutter.svg" alt="" width="22" height="22">Flutter</li>
+                    <li><img src="assets/icons/dart.svg" alt="" width="22" height="22">Dart</li>
+                    <li><img class="icon-mono" src="assets/icons/nextjs.svg" alt="" width="22" height="22">Next.js</li>
+                    <li><img src="assets/icons/react.svg" alt="" width="22" height="22">React</li>
+                    <li><img src="assets/icons/typescript.svg" alt="" width="22" height="22">TypeScript</li>
+                    <li><img src="assets/icons/nodejs.svg" alt="" width="22" height="22">Node.js</li>
+                    <li><img src="assets/icons/python.svg" alt="" width="22" height="22">Python</li>
+                    <li><img class="icon-mono" src="assets/icons/django.svg" alt="" width="22" height="22">Django</li>
+                    <li><img src="assets/icons/n8n.svg" alt="" width="22" height="22">n8n</li>
+                    <li><img class="icon-mono" src="assets/icons/openai.svg" alt="" width="22" height="22">OpenAI</li>
+                    <li><img src="assets/icons/mongodb.svg" alt="" width="22" height="22">MongoDB</li>
+                    <li><img src="assets/icons/postgresql.svg" alt="" width="22" height="22">PostgreSQL</li>
+                    <li><img src="assets/icons/firebase.svg" alt="" width="22" height="22">Firebase</li>
+                    <li><img src="assets/icons/supabase.svg" alt="" width="22" height="22">Supabase</li>
+                    <li><img src="assets/icons/docker.svg" alt="" width="22" height="22">Docker</li>
+                    <li><img src="assets/icons/githubactions.svg" alt="" width="22" height="22">GitHub Actions</li>
+                    <li><img src="assets/icons/tailwindcss.svg" alt="" width="22" height="22">Tailwind CSS</li>
+                    <li><img class="icon-mono" src="assets/icons/aws.svg" alt="" width="22" height="22">AWS</li>
+                </ul>
+                <ul class="marquee-track" aria-hidden="true">
+                    <li><img src="assets/icons/flutter.svg" alt="" width="22" height="22">Flutter</li>
+                    <li><img src="assets/icons/dart.svg" alt="" width="22" height="22">Dart</li>
+                    <li><img class="icon-mono" src="assets/icons/nextjs.svg" alt="" width="22" height="22">Next.js</li>
+                    <li><img src="assets/icons/react.svg" alt="" width="22" height="22">React</li>
+                    <li><img src="assets/icons/typescript.svg" alt="" width="22" height="22">TypeScript</li>
+                    <li><img src="assets/icons/nodejs.svg" alt="" width="22" height="22">Node.js</li>
+                    <li><img src="assets/icons/python.svg" alt="" width="22" height="22">Python</li>
+                    <li><img class="icon-mono" src="assets/icons/django.svg" alt="" width="22" height="22">Django</li>
+                    <li><img src="assets/icons/n8n.svg" alt="" width="22" height="22">n8n</li>
+                    <li><img class="icon-mono" src="assets/icons/openai.svg" alt="" width="22" height="22">OpenAI</li>
+                    <li><img src="assets/icons/mongodb.svg" alt="" width="22" height="22">MongoDB</li>
+                    <li><img src="assets/icons/postgresql.svg" alt="" width="22" height="22">PostgreSQL</li>
+                    <li><img src="assets/icons/firebase.svg" alt="" width="22" height="22">Firebase</li>
+                    <li><img src="assets/icons/supabase.svg" alt="" width="22" height="22">Supabase</li>
+                    <li><img src="assets/icons/docker.svg" alt="" width="22" height="22">Docker</li>
+                    <li><img src="assets/icons/githubactions.svg" alt="" width="22" height="22">GitHub Actions</li>
+                    <li><img src="assets/icons/tailwindcss.svg" alt="" width="22" height="22">Tailwind CSS</li>
+                    <li><img class="icon-mono" src="assets/icons/aws.svg" alt="" width="22" height="22">AWS</li>
+                </ul>
             </div>
         </section>
 
         <!-- ============== ABOUT ============== -->
-        <section id="about" class="container">
-            <div class="bento reveal">
-                <div class="section-head">
-                    <p class="section-eyebrow">about</p>
-                    <h2 class="section-title">About</h2>
-                </div>
+        <section id="about" class="section">
+            <div class="container">
+                <header class="section-head" data-reveal>
+                    <p class="eyebrow"><span class="eyebrow-num">01</span>About me</p>
+                    <h2 class="section-title">Developer, stack lead &amp; <em class="serif">problem solver</em>.</h2>
+                </header>
 
-                <div class="tile about-tile">
-                    <p>I'm a Software Developer based in <strong>Dhaka, Bangladesh</strong>, currently serving as a
-                        <strong>Flutter Developer and stack lead</strong> at Softvence Agency. I own the full app
-                        lifecycle — from first client meeting through Flutter implementation, API integration, and
-                        Play&nbsp;Store / App&nbsp;Store release.</p>
-                    <p>So far I've shipped <strong>5 production mobile apps</strong> across health, ecommerce, and
-                        private client domains, plus <strong>3 independent n8n automation projects</strong> covering
-                        API integrations and workflow orchestration.</p>
-                    <p>On the web side I work with <strong>TypeScript, React.js, and Next.js</strong>, building
-                        platforms like blog systems, school / hospital management dashboards, and streaming clones —
-                        always favouring clean architecture and intuitive UX. I keep my problem-solving sharp with
-                        C++ competitive programming.</p>
-                </div>
+                <div class="about-grid">
+                    <div class="about-text" data-reveal>
+                        <p class="lead">I'm a software developer from Dhaka, Bangladesh, who loves turning messy
+                            requirements into products people actually enjoy using.</p>
+                        <p>My core is <strong>Flutter</strong> for mobile, <strong>Next.js &amp; TypeScript</strong>
+                            for the web, and <strong>Python, n8n and AI APIs</strong> for the automation in between.
+                            I care about clean architecture, honest estimates and interfaces that feel calm.</p>
+                        <p>At <strong>Softvence Agency</strong> I'm a Flutter developer and the official stack lead for a
+                            cross-functional team spanning Flutter, UI/UX, Laravel/Node backends and web frontend. I own
+                            delivery end to end — client meetings, requirements, UI review, implementation, API
+                            integration, testing, demos, store release and post-launch support.</p>
+                        <p>Along the way I've shipped <strong>5 production apps</strong> and built <strong>3 n8n
+                                automation projects</strong> on my own. I'm also completing a BSc in Computer Science
+                            &amp; Engineering at Primeasia University, and I keep my problem-solving sharp with C++
+                            competitive programming.</p>
+                        <a class="link-arrow" href="#contact">
+                            Let's work together
+                            <svg class="i" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+                        </a>
+                    </div>
 
-                <div class="about-side">
-                    <div class="tile">
-                        <p class="tile-eyebrow">currently</p>
+                    <aside class="now-card card" data-reveal aria-label="Right now">
+                        <p class="now-label"><span class="pulse" aria-hidden="true"></span>Right now</p>
                         <dl class="now-list">
                             <div class="now-row">
                                 <dt>Role</dt>
                                 <dd>Flutter Developer · Stack Lead</dd>
                             </div>
                             <div class="now-row">
-                                <dt>At</dt>
+                                <dt>Company</dt>
                                 <dd>Softvence Agency, Dhaka</dd>
                             </div>
                             <div class="now-row">
                                 <dt>Focus</dt>
-                                <dd>Flutter apps, Next.js platforms, n8n automations</dd>
+                                <dd>Flutter apps, Next.js platforms, n8n &amp; AI automation</dd>
                             </div>
                             <div class="now-row">
-                                <dt>Status</dt>
-                                <dd><span class="chip"><span class="chip-dot"></span>open to opportunities</span></dd>
+                                <dt>Studying</dt>
+                                <dd>BSc CSE · Primeasia University</dd>
+                            </div>
+                            <div class="now-row">
+                                <dt>Languages</dt>
+                                <dd>Bangla (native) · English (fluent)</dd>
                             </div>
                         </dl>
-                    </div>
+                        <div class="social-row">
+                            <a class="icon-btn" href="https://github.com/syedraihanali" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><svg class="i" aria-hidden="true"><use href="#i-github" /></svg></a>
+                            <a class="icon-btn" href="https://www.linkedin.com/in/syedraihanali/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><svg class="i" aria-hidden="true"><use href="#i-linkedin" /></svg></a>
+                            <a class="icon-btn" href="mailto:syedraihanali65@gmail.com" aria-label="Send an email"><svg class="i" aria-hidden="true"><use href="#i-mail" /></svg></a>
+                            <a class="btn btn-ghost btn-sm" href="assets/CV_Syed_Raihan_Ali.pdf" download>
+                                <svg class="i" aria-hidden="true"><use href="#i-download" /></svg> CV
+                            </a>
+                        </div>
+                    </aside>
+                </div>
+
+                <h3 class="sub-title" data-reveal>What I do</h3>
+                <div class="services" data-reveal-group>
+                    <article class="service card spotlight">
+                        <span class="service-icon"><svg class="i" aria-hidden="true"><use href="#i-smartphone" /></svg></span>
+                        <h4>Mobile apps</h4>
+                        <p>Cross-platform Flutter apps with clean architecture, REST API integration, offline storage
+                            and rich notifications — shipped to Play Store and App Store.</p>
+                    </article>
+                    <article class="service card spotlight">
+                        <span class="service-icon"><svg class="i" aria-hidden="true"><use href="#i-layout" /></svg></span>
+                        <h4>Web platforms</h4>
+                        <p>Dashboards, blogs and SaaS-style products with Next.js, React and TypeScript, backed by
+                            Node.js or Django with MongoDB or PostgreSQL.</p>
+                    </article>
+                    <article class="service card spotlight">
+                        <span class="service-icon"><svg class="i" aria-hidden="true"><use href="#i-workflow" /></svg></span>
+                        <h4>Automation &amp; AI</h4>
+                        <p>n8n workflows, scheduled pipelines and AI-assisted tools that remove busywork — with
+                            rule-based fallbacks so they never hard-fail.</p>
+                    </article>
+                    <article class="service card spotlight">
+                        <span class="service-icon"><svg class="i" aria-hidden="true"><use href="#i-users" /></svg></span>
+                        <h4>Delivery &amp; leadership</h4>
+                        <p>Stack lead for a cross-functional team. Clear English client communication, scoping, demos,
+                            releases and post-launch support.</p>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- ============== EXPERIENCE ============== -->
-        <section id="experience" class="container">
-            <div class="bento reveal">
-                <div class="section-head">
-                    <p class="section-eyebrow">experience</p>
-                    <h2 class="section-title">Experience</h2>
-                </div>
+        <section id="experience" class="section">
+            <div class="container">
+                <header class="section-head" data-reveal>
+                    <p class="eyebrow"><span class="eyebrow-num">02</span>Experience</p>
+                    <h2 class="section-title">Where I've been <em class="serif">building</em>.</h2>
+                </header>
 
-                <div class="exp-list">
-                    <article class="tile exp-tile">
-                        <header class="exp-head">
-                            <div>
-                                <h3 class="exp-role">Flutter Developer · Stack Lead</h3>
-                                <p class="exp-company">Softvence Agency</p>
-                            </div>
-                            <span class="chip"><span class="chip-dot"></span>current</span>
-                        </header>
-                        <p class="exp-meta">
-                            <time datetime="2025-08-01">Aug 2025</time>
-                            <span aria-hidden="true">→</span>
-                            <span>Present</span>
-                            <span aria-hidden="true">·</span>
-                            <span>Mohakhali, Dhaka</span>
-                        </p>
-                        <ul class="exp-bullets">
-                            <li>Serve as official <strong>stack lead</strong> for a cross-functional delivery team
-                                spanning Flutter, UI/UX, Laravel / Node backend, and web frontend — while staying
-                                hands-on in Flutter.</li>
-                            <li>Own the full app lifecycle: client meetings → requirements → UI review → Flutter
-                                implementation → API integration → testing → demos → Play&nbsp;Store / App&nbsp;Store
-                                release → post-delivery support.</li>
-                            <li>Shipped <strong>production mobile apps</strong> across Play&nbsp;Store and App&nbsp;Store,
-                                including dry-eye / health, ecommerce, and private client projects.</li>
-                            <li>Built <strong>3 n8n automation projects</strong> independently covering API integrations
-                                and workflow orchestration.</li>
-                            <li>Communicate directly with English-speaking clients for onboarding, scope changes,
-                                demos, issue resolution, and ongoing support.</li>
-                        </ul>
-                        <ul class="exp-tags" aria-label="Technologies used">
-                            <li class="tag">Flutter</li>
-                            <li class="tag">Dart</li>
-                            <li class="tag">REST APIs</li>
-                            <li class="tag">n8n</li>
-                            <li class="tag">Play Store / App Store</li>
-                            <li class="tag">Team Leadership</li>
-                        </ul>
+                <ol class="timeline" data-timeline>
+                    <li class="tl-item" data-reveal>
+                        <p class="tl-date"><time datetime="2025-08">Aug 2025</time> — Present</p>
+                        <span class="tl-dot" aria-hidden="true"></span>
+                        <article class="tl-card card spotlight">
+                            <header class="tl-head">
+                                <div>
+                                    <h3 class="tl-role">Flutter Developer · Stack Lead</h3>
+                                    <p class="tl-company">Softvence Agency <span>· Mohakhali, Dhaka</span></p>
+                                </div>
+                                <span class="chip chip-live"><span class="pulse" aria-hidden="true"></span>Current</span>
+                            </header>
+                            <ul class="tl-bullets">
+                                <li>Official <strong>stack lead</strong> for a cross-functional delivery team —
+                                    Flutter, UI/UX, Laravel/Node backend and web frontend — while staying hands-on in
+                                    Flutter.</li>
+                                <li>Own the app lifecycle end to end: client meetings, requirements, UI review, Flutter
+                                    implementation, API integration, testing, demos, Play&nbsp;Store / App&nbsp;Store
+                                    release and post-delivery support.</li>
+                                <li>Delivered <strong>production apps</strong> across Play Store and App Store, including
+                                    dry-eye / health, ecommerce and private client projects.</li>
+                                <li>Built <strong>3 n8n automation projects</strong> independently, covering API
+                                    integrations and workflow orchestration.</li>
+                                <li>Work directly with English-speaking clients on onboarding, requirement changes,
+                                    progress updates, demos and support.</li>
+                            </ul>
+                            <ul class="tags">
+                                <li class="tag">Flutter</li>
+                                <li class="tag">Dart</li>
+                                <li class="tag">REST APIs</li>
+                                <li class="tag">n8n</li>
+                                <li class="tag">Play Store / App Store</li>
+                                <li class="tag">Team leadership</li>
+                            </ul>
+                        </article>
+                    </li>
+
+                    <li class="tl-item" data-reveal>
+                        <p class="tl-date"><time datetime="2025-02">Feb 2025</time> — <time datetime="2025-07">Jul 2025</time></p>
+                        <span class="tl-dot" aria-hidden="true"></span>
+                        <article class="tl-card card spotlight">
+                            <header class="tl-head">
+                                <div>
+                                    <h3 class="tl-role">IT Support Executive</h3>
+                                    <p class="tl-company">Bit to Byte <span>· New DOHS, Mohakhali, Dhaka</span></p>
+                                </div>
+                            </header>
+                            <ul class="tl-bullets">
+                                <li>Resolved hardware, software and network issues for end-users across Windows and
+                                    Linux, keeping workstation downtime minimal.</li>
+                                <li>Configured and maintained local network infrastructure — routers, switches and
+                                    peripheral devices.</li>
+                                <li>Documented technical procedures and ran user training, reducing recurring support
+                                    requests.</li>
+                                <li>Hands-on with system administration, user account management and helpdesk
+                                    operations.</li>
+                            </ul>
+                            <ul class="tags">
+                                <li class="tag">Windows</li>
+                                <li class="tag">Linux</li>
+                                <li class="tag">Networking</li>
+                                <li class="tag">System administration</li>
+                                <li class="tag">Documentation</li>
+                            </ul>
+                        </article>
+                    </li>
+                </ol>
+
+                <h3 class="sub-title" data-reveal>Education</h3>
+                <div class="edu-grid" data-reveal-group>
+                    <article class="edu-card card spotlight">
+                        <span class="edu-icon"><svg class="i" aria-hidden="true"><use href="#i-cap" /></svg></span>
+                        <div>
+                            <p class="edu-when">Expected 2027</p>
+                            <h4 class="edu-title">BSc in Computer Science &amp; Engineering</h4>
+                            <p class="edu-school">Primeasia University, Dhaka</p>
+                            <p class="edu-grade">CGPA <strong>3.58</strong> / 4.00</p>
+                        </div>
                     </article>
-
-                    <article class="tile exp-tile">
-                        <header class="exp-head">
-                            <div>
-                                <h3 class="exp-role">IT Support Executive</h3>
-                                <p class="exp-company">Bit to Byte</p>
-                            </div>
-                        </header>
-                        <p class="exp-meta">
-                            <time datetime="2025-02-01">Feb 2025</time>
-                            <span aria-hidden="true">→</span>
-                            <time datetime="2025-07-31">Jul 2025</time>
-                            <span aria-hidden="true">·</span>
-                            <span>New DOHS, Mohakhali, Dhaka</span>
-                        </p>
-                        <ul class="exp-bullets">
-                            <li>Resolved hardware, software, and network issues for end-users across Windows and Linux
-                                systems, keeping workstation downtime minimal.</li>
-                            <li>Configured and maintained local network infrastructure including routers, switches, and
-                                peripheral devices.</li>
-                            <li>Documented technical procedures and ran user-training sessions, reducing recurring
-                                support tickets.</li>
-                            <li>Hands-on with system administration, user account management, and helpdesk operations.</li>
-                        </ul>
-                        <ul class="exp-tags" aria-label="Technologies used">
-                            <li class="tag">Windows</li>
-                            <li class="tag">Linux</li>
-                            <li class="tag">Networking</li>
-                            <li class="tag">System Administration</li>
-                            <li class="tag">Documentation</li>
-                        </ul>
+                    <article class="edu-card card spotlight">
+                        <span class="edu-icon"><svg class="i" aria-hidden="true"><use href="#i-cap" /></svg></span>
+                        <div>
+                            <p class="edu-when">2022</p>
+                            <h4 class="edu-title">Higher Secondary Certificate · Science</h4>
+                            <p class="edu-school">Faridpur Government College</p>
+                            <p class="edu-grade">GPA <strong>3.83</strong> / 5.00</p>
+                        </div>
                     </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============== SKILLS ============== -->
-        <section id="skills" class="container">
-            <div class="bento reveal">
-                <div class="section-head">
-                    <p class="section-eyebrow">stack</p>
-                    <h2 class="section-title">Skills</h2>
-                </div>
-
-                <div class="skills-grid-bento">
-                    <div class="tile skill-tile wide">
-                        <p class="skill-cat-title">Frontend</p>
-                        <div class="skill-icons">
-                            <span class="skill-icon-wrap" data-name="React"><img src="assets/icons/react.svg" alt="React" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="Next.js"><img src="assets/icons/nextjs.svg" alt="Next.js" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="TypeScript"><img src="assets/icons/typescript.svg" alt="TypeScript" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="JavaScript"><img src="assets/icons/javascript.svg" alt="JavaScript" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="Tailwind CSS"><img src="assets/icons/tailwindcss.svg" alt="Tailwind CSS" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="HTML5"><img src="assets/icons/html.svg" alt="HTML5" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="CSS3"><img src="assets/icons/css.svg" alt="CSS3" loading="lazy" width="30" height="30"></span>
-                        </div>
-                    </div>
-
-                    <div class="tile skill-tile wide">
-                        <p class="skill-cat-title">Backend &amp; Mobile</p>
-                        <div class="skill-icons">
-                            <span class="skill-icon-wrap" data-name="Node.js"><img src="assets/icons/nodejs.svg" alt="Node.js" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="Express.js"><img src="assets/icons/expressjs.svg" alt="Express.js" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="Flutter"><img src="assets/icons/flutter.svg" alt="Flutter" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="Dart"><img src="assets/icons/dart.svg" alt="Dart" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="Python"><img src="assets/icons/python.svg" alt="Python" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="C++"><img src="assets/icons/cpp.svg" alt="C++" loading="lazy" width="30" height="30"></span>
-                        </div>
-                    </div>
-
-                    <div class="tile skill-tile">
-                        <p class="skill-cat-title">Databases &amp; BaaS</p>
-                        <div class="skill-icons">
-                            <span class="skill-icon-wrap" data-name="MongoDB"><img src="assets/icons/mongodb.svg" alt="MongoDB" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="PostgreSQL"><img src="assets/icons/postgresql.svg" alt="PostgreSQL" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="Firebase"><img src="assets/icons/firebase.svg" alt="Firebase" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="Supabase"><img src="assets/icons/supabase.svg" alt="Supabase" loading="lazy" width="30" height="30"></span>
-                        </div>
-                    </div>
-
-                    <div class="tile skill-tile">
-                        <p class="skill-cat-title">Cloud &amp; DevOps</p>
-                        <div class="skill-icons">
-                            <span class="skill-icon-wrap" data-name="Docker"><img src="assets/icons/docker.svg" alt="Docker" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="AWS"><img src="assets/icons/aws.svg" alt="AWS" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="Azure"><img src="assets/icons/azure.svg" alt="Azure" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="Google Cloud"><img src="assets/icons/gcp.svg" alt="Google Cloud" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="Postman"><img src="assets/icons/postman.svg" alt="Postman" loading="lazy" width="30" height="30"></span>
-                        </div>
-                    </div>
-
-                    <div class="tile skill-tile">
-                        <p class="skill-cat-title">Automation &amp; Tools</p>
-                        <div class="skill-icons">
-                            <span class="skill-icon-wrap" data-name="n8n"><img src="assets/icons/n8n.svg" alt="n8n" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="Git"><img src="assets/icons/git.svg" alt="Git" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="GitHub"><img src="assets/icons/github.svg" alt="GitHub" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="VS Code"><img src="assets/icons/vscode.svg" alt="VS Code" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="Vim"><img src="assets/icons/vim.svg" alt="Vim" loading="lazy" width="30" height="30"></span>
-                            <span class="skill-icon-wrap" data-name="Linux"><img src="assets/icons/linux.svg" alt="Linux" loading="lazy" width="30" height="30"></span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
 
         <!-- ============== PROJECTS ============== -->
-        <section id="projects" class="container">
-            <div class="bento reveal">
-                <div class="section-head">
-                    <p class="section-eyebrow">selected work</p>
-                    <h2 class="section-title">Projects</h2>
+        <section id="projects" class="section">
+            <div class="container">
+                <header class="section-head section-head--split" data-reveal>
+                    <div>
+                        <p class="eyebrow"><span class="eyebrow-num">03</span>Selected work</p>
+                        <h2 class="section-title">Things I've <em class="serif">built</em>.</h2>
+                        <p class="section-sub">Open-source tools, full-stack products and mobile apps — straight from my
+                            GitHub. Star counts update live.</p>
+                    </div>
+                    <div class="filters" role="group" aria-label="Filter projects">
+                        <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">All <span class="filter-count"></span></button>
+                        <button type="button" class="filter" data-filter="mobile" aria-pressed="false">Mobile <span class="filter-count"></span></button>
+                        <button type="button" class="filter" data-filter="web" aria-pressed="false">Web <span class="filter-count"></span></button>
+                        <button type="button" class="filter" data-filter="auto" aria-pressed="false">AI &amp; Automation <span class="filter-count"></span></button>
+                    </div>
+                </header>
+
+                <div class="projects" data-projects>
+                    <!-- Featured: Dhaka Environment Logger -->
+                    <article class="project project--featured card" data-cat="auto" data-repo="dhaka-environment-logger" data-reveal>
+                        <div class="project-visual visual--env">
+                            <div class="env tilt" data-env>
+                                <div class="env-top">
+                                    <span class="env-status is-snapshot" data-env-status><span class="pulse" aria-hidden="true"></span><span data-env-status-text>Snapshot</span></span>
+                                    <span class="env-place"><svg class="i" aria-hidden="true"><use href="#i-pin" /></svg>Dhaka, Bangladesh</span>
+                                </div>
+                                <div class="env-main">
+                                    <p class="env-temp"><span data-env="temp">25</span><span class="env-unit">°C</span></p>
+                                    <p class="env-cond">
+                                        <svg class="i env-cond-icon" aria-hidden="true"><use href="#i-haze" data-env-icon /></svg>
+                                        <span data-env="weather">Haze</span>
+                                    </p>
+                                </div>
+                                <dl class="env-metrics">
+                                    <div class="env-metric">
+                                        <dt>Air quality</dt>
+                                        <dd><span class="aqi" data-env="aqi" data-level="5">Very poor</span></dd>
+                                    </div>
+                                    <div class="env-metric">
+                                        <dt>PM2.5</dt>
+                                        <dd><span data-env="pm25">88.6</span><small>µg/m³</small></dd>
+                                    </div>
+                                    <div class="env-metric">
+                                        <dt>Humidity</dt>
+                                        <dd><span data-env="humidity">78</span><small>%</small></dd>
+                                    </div>
+                                    <div class="env-metric">
+                                        <dt>UV index</dt>
+                                        <dd><span data-env="uv">0</span><small data-env="uv-label">Low</small></dd>
+                                    </div>
+                                </dl>
+                                <div class="env-chart">
+                                    <div class="env-tabs" role="group" aria-label="Chart series">
+                                        <button type="button" aria-pressed="true" data-series="temp">Temp</button>
+                                        <button type="button" aria-pressed="false" data-series="pm25">PM2.5</button>
+                                        <button type="button" aria-pressed="false" data-series="humidity">Humidity</button>
+                                    </div>
+                                    <svg class="spark" viewBox="0 0 320 90" preserveAspectRatio="none" data-spark role="img" aria-label="Trend of recent readings">
+                                        <defs>
+                                            <linearGradient id="spark-fill" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="0" stop-color="currentColor" stop-opacity=".32" />
+                                                <stop offset="1" stop-color="currentColor" stop-opacity="0" />
+                                            </linearGradient>
+                                        </defs>
+                                        <path class="spark-area" d="" fill="url(#spark-fill)" />
+                                        <path class="spark-line" d="" />
+                                        <circle class="spark-dot" r="3.5" cx="-10" cy="-10" />
+                                    </svg>
+                                    <p class="env-foot">
+                                        <span data-env="range">Last 40 readings</span>
+                                        <span data-env="updated">Logged 4 Nov 2026, 10:45 PM</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-eyebrow">Data pipeline · Open source</span>
+                                <span class="repo-stats" data-repo-stats>
+                                    <span title="GitHub stars"><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><span data-stars>19</span><span class="sr-only"> stars</span></span>
+                                    <span title="Forks"><svg class="i" aria-hidden="true"><use href="#i-fork" /></svg><span data-forks>2</span><span class="sr-only"> forks</span></span>
+                                </span>
+                            </div>
+                            <h3 class="project-title">Dhaka Environment Logger</h3>
+                            <p class="project-desc">A serverless pipeline that records Dhaka's weather, air quality and UV
+                                index around the clock. GitHub Actions runs a Python logger against the OpenWeatherMap and
+                                OpenUV APIs, then commits each reading to monthly JSON and CSV files anyone can analyse.
+                                The card on the left reads that data live.</p>
+                            <ul class="project-points">
+                                <li>Scheduled GitHub Actions workflow — no server, no hosting cost</li>
+                                <li>Logging continuously since October 2025</li>
+                                <li>Open, monthly-rotated JSON + CSV datasets</li>
+                            </ul>
+                            <ul class="tags">
+                                <li class="tag">Python</li>
+                                <li class="tag">GitHub Actions</li>
+                                <li class="tag">OpenWeatherMap API</li>
+                                <li class="tag">OpenUV API</li>
+                                <li class="tag">CSV / JSON</li>
+                            </ul>
+                            <div class="project-links">
+                                <a class="btn btn-ghost btn-sm" href="https://github.com/syedraihanali/dhaka-environment-logger" target="_blank" rel="noopener noreferrer">
+                                    <svg class="i" aria-hidden="true"><use href="#i-github" /></svg> Source code
+                                </a>
+                                <a class="link-arrow" href="https://github.com/syedraihanali/dhaka-environment-logger/tree/main/data" target="_blank" rel="noopener noreferrer">
+                                    Browse the dataset <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Featured: API Monitor -->
+                    <article class="project project--featured card" data-cat="web auto" data-repo="care-guide-ai-task" data-reveal>
+                        <div class="project-visual visual--shot">
+                            <div class="browser tilt">
+                                <div class="browser-bar" aria-hidden="true">
+                                    <span></span><span></span><span></span>
+                                    <span class="browser-url">localhost:5173 — API Monitor</span>
+                                </div>
+                                <img class="shot shot-light" src="assets/img/projects/api-monitor-light.webp"
+                                    alt="API Monitor dashboard: a banner with 3 critical incidents, alert counts, API health chips and AI-written alerts"
+                                    width="1120" height="700" loading="lazy" decoding="async">
+                                <img class="shot shot-dark" src="assets/img/projects/api-monitor-dark.webp"
+                                    alt="API Monitor dashboard in dark mode with critical incidents and AI-written alerts"
+                                    width="1120" height="700" loading="lazy" decoding="async">
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-eyebrow">Full-stack · AI alerting</span>
+                                <span class="repo-stats" data-repo-stats hidden>
+                                    <span title="GitHub stars"><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><span data-stars>0</span><span class="sr-only"> stars</span></span>
+                                    <span title="Forks"><svg class="i" aria-hidden="true"><use href="#i-fork" /></svg><span data-forks>0</span><span class="sr-only"> forks</span></span>
+                                </span>
+                            </div>
+                            <h3 class="project-title">API Monitor</h3>
+                            <p class="project-desc">Monitoring and alerting for a healthcare company's API integrations.
+                                Deterministic rules catch server errors, latency spikes and empty or malformed data; an LLM
+                                then writes the alert an on-call engineer reads — with a template fallback, so a batch never
+                                fails because of the AI.</p>
+                            <ul class="project-points">
+                                <li>One incident per API, deduplicated in MongoDB and auto-resolved on recovery</li>
+                                <li>Batched LLM calls with strict JSON-schema output — only metrics reach the model</li>
+                                <li>Live React dashboard, email digests and unit-tested detection rules</li>
+                            </ul>
+                            <ul class="tags">
+                                <li class="tag">TypeScript</li>
+                                <li class="tag">Express 5</li>
+                                <li class="tag">MongoDB</li>
+                                <li class="tag">OpenAI</li>
+                                <li class="tag">React 19</li>
+                                <li class="tag">Tailwind v4</li>
+                                <li class="tag">Vitest</li>
+                            </ul>
+                            <div class="project-links">
+                                <a class="btn btn-ghost btn-sm" href="https://github.com/syedraihanali/care-guide-ai-task" target="_blank" rel="noopener noreferrer">
+                                    <svg class="i" aria-hidden="true"><use href="#i-github" /></svg> Source code
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Featured: AI Email Triage Agent -->
+                    <article class="project project--featured card" data-cat="auto web" data-repo="task_email_auto" data-reveal>
+                        <div class="project-visual visual--inbox">
+                            <div class="inbox tilt" aria-hidden="true">
+                                <div class="inbox-head">
+                                    <span class="inbox-title"><svg class="i" aria-hidden="true"><use href="#i-inbox" /></svg>Inbox triage</span>
+                                    <span class="inbox-poll"><span class="pulse"></span>polling every 2 min</span>
+                                </div>
+                                <ul class="inbox-list">
+                                    <li class="mail" style="--i:0">
+                                        <span class="mail-avatar">B</span>
+                                        <span class="mail-main"><strong>Billing</strong><span>Payment failed for invoice #2041</span></span>
+                                        <span class="verdict v-high">High · Payment</span>
+                                    </li>
+                                    <li class="mail" style="--i:1">
+                                        <span class="mail-avatar">U</span>
+                                        <span class="mail-main"><strong>Uptime monitor</strong><span>api-prod is not responding</span></span>
+                                        <span class="verdict v-high">High · Server down</span>
+                                    </li>
+                                    <li class="mail mail--muted" style="--i:2">
+                                        <span class="mail-avatar">W</span>
+                                        <span class="mail-main"><strong>Weekly digest</strong><span>10 tools you should try this week</span></span>
+                                        <span class="verdict v-ignore">Ignored</span>
+                                    </li>
+                                    <li class="mail" style="--i:3">
+                                        <span class="mail-avatar">N</span>
+                                        <span class="mail-main"><strong>Client · Northwind</strong><span>Delivery delayed again — need an update</span></span>
+                                        <span class="verdict v-med">Medium · Complaint</span>
+                                    </li>
+                                </ul>
+                                <div class="inbox-foot">
+                                    <span><svg class="i" aria-hidden="true"><use href="#i-sparkles" /></svg>3 notifications</span>
+                                    <span>1 ignored · 0 duplicates</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-eyebrow">Automation · AI</span>
+                                <span class="repo-stats" data-repo-stats hidden>
+                                    <span title="GitHub stars"><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><span data-stars>0</span><span class="sr-only"> stars</span></span>
+                                    <span title="Forks"><svg class="i" aria-hidden="true"><use href="#i-fork" /></svg><span data-forks>0</span><span class="sr-only"> forks</span></span>
+                                </span>
+                            </div>
+                            <h3 class="project-title">AI Email Triage Agent</h3>
+                            <p class="project-desc">An email-reading agent that polls an inbox, asks an AI classifier
+                                whether each message actually matters, and surfaces only the important ones — payment
+                                issues, outages, client complaints — as dashboard notifications. Everything else stays
+                                quiet.</p>
+                            <ul class="project-points">
+                                <li>Celery Beat polling, deduplicated by message ID so nothing is processed twice</li>
+                                <li>OpenAI gpt-4o-mini with JSON-schema output and a rule-based fallback</li>
+                                <li>Web, worker, scheduler, Postgres and Redis under Docker Compose</li>
+                            </ul>
+                            <ul class="tags">
+                                <li class="tag">Python</li>
+                                <li class="tag">Django 5</li>
+                                <li class="tag">Celery</li>
+                                <li class="tag">PostgreSQL</li>
+                                <li class="tag">Redis</li>
+                                <li class="tag">OpenAI</li>
+                                <li class="tag">Docker</li>
+                            </ul>
+                            <div class="project-links">
+                                <a class="btn btn-ghost btn-sm" href="https://github.com/syedraihanali/task_email_auto" target="_blank" rel="noopener noreferrer">
+                                    <svg class="i" aria-hidden="true"><use href="#i-github" /></svg> Source code
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Featured: Wakey -->
+                    <article class="project project--featured card" data-cat="mobile" data-repo="wakey" data-reveal>
+                        <div class="project-visual visual--phones">
+                            <div class="phones">
+                                <figure class="phone phone--l">
+                                    <img src="assets/img/projects/wakey-onboarding.webp" alt="Wakey onboarding screen: Sync with Nature's Rhythm"
+                                        width="405" height="903" loading="lazy" decoding="async">
+                                </figure>
+                                <figure class="phone phone--c">
+                                    <img src="assets/img/projects/wakey-alarms.webp" alt="Wakey home screen listing four alarms for Dhaka, Bangladesh"
+                                        width="405" height="903" loading="lazy" decoding="async">
+                                </figure>
+                                <figure class="phone phone--r">
+                                    <img src="assets/img/projects/wakey-welcome.webp" alt="Wakey welcome screen asking to use the current location"
+                                        width="405" height="903" loading="lazy" decoding="async">
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-eyebrow">Mobile · Flutter</span>
+                                <span class="repo-stats" data-repo-stats>
+                                    <span title="GitHub stars"><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><span data-stars>1</span><span class="sr-only"> stars</span></span>
+                                    <span title="Forks"><svg class="i" aria-hidden="true"><use href="#i-fork" /></svg><span data-forks>1</span><span class="sr-only"> forks</span></span>
+                                </span>
+                            </div>
+                            <h3 class="project-title">Wakey — location-aware alarms</h3>
+                            <p class="project-desc">A cross-platform alarm app that syncs with your location: it works out
+                                local sunset time and nudges you before sundown, alongside your regular alarms. Calm dark
+                                UI, smooth onboarding and alarms that keep working when the app is closed.</p>
+                            <ul class="project-points">
+                                <li>Three-screen onboarding with skip and a friendly location-permission flow</li>
+                                <li>Alarms persisted offline with Hive and managed in the background</li>
+                                <li>Rich local notifications with snooze on Android and iOS</li>
+                            </ul>
+                            <ul class="tags">
+                                <li class="tag">Flutter</li>
+                                <li class="tag">Dart</li>
+                                <li class="tag">GetX</li>
+                                <li class="tag">Hive</li>
+                                <li class="tag">Geolocator</li>
+                                <li class="tag">Local notifications</li>
+                            </ul>
+                            <div class="project-links">
+                                <a class="btn btn-ghost btn-sm" href="https://github.com/syedraihanali/wakey" target="_blank" rel="noopener noreferrer">
+                                    <svg class="i" aria-hidden="true"><use href="#i-github" /></svg> Source code
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Flutter template -->
+                    <article class="project card spotlight" data-cat="mobile" data-repo="flutter-template" data-reveal>
+                        <div class="project-thumb thumb-art" aria-hidden="true">
+                            <span class="art-tile"><img src="assets/icons/flutter.svg" alt="" width="44" height="44"></span>
+                            <span class="art-chip art-chip--1">MVVM</span>
+                            <span class="art-chip art-chip--2">RxDart</span>
+                            <span class="art-chip art-chip--3">GetIt · Dio</span>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-eyebrow">Mobile · Architecture</span>
+                                <span class="repo-stats" data-repo-stats hidden>
+                                    <span title="GitHub stars"><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><span data-stars>0</span><span class="sr-only"> stars</span></span>
+                                    <span title="Forks"><svg class="i" aria-hidden="true"><use href="#i-fork" /></svg><span data-forks>0</span><span class="sr-only"> forks</span></span>
+                                </span>
+                            </div>
+                            <h3 class="project-title">Flutter Clean Architecture Template</h3>
+                            <p class="project-desc">A production-ready starter: feature-based clean architecture,
+                                MVVM-style reactive state with RxDart, GetIt dependency injection and a Dio network layer
+                                with centralized error handling.</p>
+                            <ul class="tags">
+                                <li class="tag">Flutter</li>
+                                <li class="tag">RxDart</li>
+                                <li class="tag">GetIt</li>
+                                <li class="tag">Dio</li>
+                            </ul>
+                            <div class="project-links">
+                                <a class="link-arrow" href="https://github.com/syedraihanali/flutter-template" target="_blank" rel="noopener noreferrer">Code <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- RBAC blog -->
+                    <article class="project card spotlight" data-cat="web" data-repo="task-001" data-reveal>
+                        <div class="project-thumb thumb-art thumb-art--shield" aria-hidden="true">
+                            <span class="art-tile"><svg class="i" aria-hidden="true"><use href="#i-shield" /></svg></span>
+                            <span class="art-chip art-chip--1">super admin</span>
+                            <span class="art-chip art-chip--2">moderator</span>
+                            <span class="art-chip art-chip--3">user · guest</span>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-eyebrow">Web · Full-stack</span>
+                                <span class="repo-stats" data-repo-stats hidden>
+                                    <span title="GitHub stars"><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><span data-stars>0</span><span class="sr-only"> stars</span></span>
+                                    <span title="Forks"><svg class="i" aria-hidden="true"><use href="#i-fork" /></svg><span data-forks>0</span><span class="sr-only"> forks</span></span>
+                                </span>
+                            </div>
+                            <h3 class="project-title">RBAC Blog System</h3>
+                            <p class="project-desc">A blog with posts and comments built to demonstrate role- and
+                                ownership-based access control: four roles, with every rule enforced on the server.</p>
+                            <ul class="tags">
+                                <li class="tag">Next.js 16</li>
+                                <li class="tag">MongoDB</li>
+                                <li class="tag">NextAuth</li>
+                                <li class="tag">Redux Toolkit</li>
+                                <li class="tag">Docker</li>
+                            </ul>
+                            <div class="project-links">
+                                <a class="link-arrow" href="https://github.com/syedraihanali/task-001" target="_blank" rel="noopener noreferrer">Code <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- School management -->
+                    <article class="project card spotlight" data-cat="web" data-repo="school-management-system" data-reveal>
+                        <div class="project-thumb">
+                            <img src="assets/img/projects/school-management.webp"
+                                alt="School management dashboard with student, teacher, parent and staff counts, attendance chart and calendar"
+                                width="1120" height="700" loading="lazy" decoding="async">
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-eyebrow">Web · Dashboard</span>
+                                <span class="repo-stats" data-repo-stats hidden>
+                                    <span title="GitHub stars"><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><span data-stars>0</span><span class="sr-only"> stars</span></span>
+                                    <span title="Forks"><svg class="i" aria-hidden="true"><use href="#i-fork" /></svg><span data-forks>0</span><span class="sr-only"> forks</span></span>
+                                </span>
+                            </div>
+                            <h3 class="project-title">School Management Dashboard</h3>
+                            <p class="project-desc">Admin dashboard for students, teachers, parents, classes, attendance
+                                and events — with charts, calendars and validated forms.</p>
+                            <ul class="tags">
+                                <li class="tag">Next.js</li>
+                                <li class="tag">TypeScript</li>
+                                <li class="tag">React Hook Form</li>
+                                <li class="tag">Zod</li>
+                                <li class="tag">Recharts</li>
+                            </ul>
+                            <div class="project-links">
+                                <a class="link-arrow" href="https://github.com/syedraihanali/school-management-system" target="_blank" rel="noopener noreferrer">Code <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a>
+                                <a class="link-arrow" href="https://school-management-system-alpha-umber.vercel.app/admin" target="_blank" rel="noopener noreferrer">Live demo <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Code Info -->
+                    <article class="project card spotlight" data-cat="web" data-repo="code-info" data-reveal>
+                        <div class="project-thumb">
+                            <img src="assets/img/projects/code-info.webp"
+                                alt="Code-Info blog homepage with Next.js and Python setup guides"
+                                width="1120" height="700" loading="lazy" decoding="async">
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-eyebrow">Web · Headless CMS</span>
+                                <span class="repo-stats" data-repo-stats hidden>
+                                    <span title="GitHub stars"><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><span data-stars>0</span><span class="sr-only"> stars</span></span>
+                                    <span title="Forks"><svg class="i" aria-hidden="true"><use href="#i-fork" /></svg><span data-forks>0</span><span class="sr-only"> forks</span></span>
+                                </span>
+                            </div>
+                            <h3 class="project-title">Code Info</h3>
+                            <p class="project-desc">A coding-tutorials blog on Next.js 13 and Sanity CMS — dynamic routes,
+                                SEO-friendly pages and a clean reading experience.</p>
+                            <ul class="tags">
+                                <li class="tag">Next.js 13</li>
+                                <li class="tag">Sanity</li>
+                                <li class="tag">TypeScript</li>
+                                <li class="tag">Tailwind</li>
+                            </ul>
+                            <div class="project-links">
+                                <a class="link-arrow" href="https://github.com/syedraihanali/code-info" target="_blank" rel="noopener noreferrer">Code <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a>
+                                <a class="link-arrow" href="https://code-info.vercel.app" target="_blank" rel="noopener noreferrer">Live demo <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Loop IT -->
+                    <article class="project card spotlight" data-cat="web" data-repo="loop-it-main" data-reveal>
+                        <div class="project-thumb thumb-art thumb-art--pen" aria-hidden="true">
+                            <span class="art-tile"><svg class="i" aria-hidden="true"><use href="#i-pen" /></svg></span>
+                            <span class="art-chip art-chip--1">rich-text editor</span>
+                            <span class="art-chip art-chip--2">auth</span>
+                            <span class="art-chip art-chip--3">Prisma</span>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-eyebrow">Web · Blog platform</span>
+                                <span class="repo-stats" data-repo-stats hidden>
+                                    <span title="GitHub stars"><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><span data-stars>0</span><span class="sr-only"> stars</span></span>
+                                    <span title="Forks"><svg class="i" aria-hidden="true"><use href="#i-fork" /></svg><span data-forks>0</span><span class="sr-only"> forks</span></span>
+                                </span>
+                            </div>
+                            <h3 class="project-title">Loop IT Blog</h3>
+                            <p class="project-desc">A blog platform with authentication, rich-text post editing and post
+                                management, built on Next.js with a Prisma data layer.</p>
+                            <ul class="tags">
+                                <li class="tag">Next.js</li>
+                                <li class="tag">Prisma</li>
+                                <li class="tag">NextAuth</li>
+                                <li class="tag">TipTap</li>
+                            </ul>
+                            <div class="project-links">
+                                <a class="link-arrow" href="https://github.com/syedraihanali/loop-it-main" target="_blank" rel="noopener noreferrer">Code <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Movie site -->
+                    <article class="project card spotlight" data-cat="web" data-repo="simple-movie-site" data-reveal>
+                        <div class="project-thumb thumb-art thumb-art--film" aria-hidden="true">
+                            <span class="art-tile"><svg class="i" aria-hidden="true"><use href="#i-film" /></svg></span>
+                            <span class="art-chip art-chip--1">Google sign-in</span>
+                            <span class="art-chip art-chip--2">GitHub OAuth</span>
+                            <span class="art-chip art-chip--3">Zustand</span>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-eyebrow">Web · Auth &amp; data</span>
+                                <span class="repo-stats" data-repo-stats hidden>
+                                    <span title="GitHub stars"><svg class="i" aria-hidden="true"><use href="#i-star" /></svg><span data-stars>0</span><span class="sr-only"> stars</span></span>
+                                    <span title="Forks"><svg class="i" aria-hidden="true"><use href="#i-fork" /></svg><span data-forks>0</span><span class="sr-only"> forks</span></span>
+                                </span>
+                            </div>
+                            <h3 class="project-title">Movie Streaming Site</h3>
+                            <p class="project-desc">A Netflix-style movie site with email, Google and GitHub sign-in, a
+                                Prisma data layer, favourites and a polished dark UI.</p>
+                            <ul class="tags">
+                                <li class="tag">Next.js</li>
+                                <li class="tag">NextAuth</li>
+                                <li class="tag">Prisma</li>
+                                <li class="tag">Zustand</li>
+                            </ul>
+                            <div class="project-links">
+                                <a class="link-arrow" href="https://github.com/syedraihanali/simple-movie-site" target="_blank" rel="noopener noreferrer">Code <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a>
+                                <a class="link-arrow" href="https://movie-site-byraihan.vercel.app" target="_blank" rel="noopener noreferrer">Live demo <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right" /></svg></a>
+                            </div>
+                        </div>
+                    </article>
                 </div>
 
-                <article class="tile proj-tile tile-6">
-                    <div class="proj-icon" aria-hidden="true">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                <!-- GitHub activity -->
+                <div class="gh card" data-reveal data-gh-card>
+                    <div class="gh-head">
+                        <div>
+                            <p class="gh-kicker"><svg class="i" aria-hidden="true"><use href="#i-github" /></svg>Open-source activity · live</p>
+                            <h3 class="gh-title"><span data-count="6251" data-gh="contributions">6,251</span> contributions in the last year</h3>
+                        </div>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/syedraihanali" target="_blank" rel="noopener noreferrer">
+                            <svg class="i" aria-hidden="true"><use href="#i-github" /></svg> @syedraihanali
+                        </a>
                     </div>
-                    <h3 class="proj-title">Loop IT — Blogs</h3>
-                    <p class="proj-desc">Modern blog platform with auth, post management, and a clean responsive UI for
-                        sharing articles. Built with Next.js + Prisma.</p>
-                    <ul class="proj-tech">
-                        <li class="tag">Next.js</li>
-                        <li class="tag">TypeScript</li>
-                        <li class="tag">Prisma</li>
-                        <li class="tag">Tailwind</li>
-                    </ul>
-                    <div class="proj-actions">
-                        <a class="proj-link primary" href="https://github.com/syedraihanali/loop-it-main" target="_blank" rel="noopener">Code ↗</a>
-                        <a class="proj-link" href="https://loop-it-main.vercel.app/" target="_blank" rel="noopener">Live demo</a>
+                    <div class="heatmap-scroll">
+                        <div class="heatmap-inner">
+                            <div class="heatmap-months" data-gh-months aria-hidden="true"></div>
+                            <div class="heatmap" data-gh-heatmap role="img" aria-label="GitHub contribution calendar for the last twelve months"></div>
+                        </div>
                     </div>
-                </article>
+                    <div class="gh-foot">
+                        <dl class="gh-stats">
+                            <div><dt>Public repos</dt><dd data-gh="repos" data-count="26">26</dd></div>
+                            <div><dt>Stars earned</dt><dd data-gh="stars" data-count="20">20</dd></div>
+                            <div data-gh-optional hidden><dt>Followers</dt><dd data-gh="followers">0</dd></div>
+                        </dl>
+                        <p class="heatmap-legend" aria-hidden="true">Less <i data-l="0"></i><i data-l="1"></i><i data-l="2"></i><i data-l="3"></i><i data-l="4"></i> More</p>
+                    </div>
+                </div>
 
-                <article class="tile proj-tile tile-6">
-                    <div class="proj-icon" aria-hidden="true">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                    </div>
-                    <h3 class="proj-title">Code Info</h3>
-                    <p class="proj-desc">Coding-tutorials platform on Next.js 13 with Sanity CMS. Dynamic routing, SEO
-                        optimization, and a clean reading experience.</p>
-                    <ul class="proj-tech">
-                        <li class="tag">Next.js 13</li>
-                        <li class="tag">Sanity CMS</li>
-                        <li class="tag">TypeScript</li>
-                    </ul>
-                    <div class="proj-actions">
-                        <a class="proj-link primary" href="https://github.com/syedraihanali/code-info" target="_blank" rel="noopener">Code ↗</a>
-                        <a class="proj-link" href="https://code-info.vercel.app" target="_blank" rel="noopener">Live demo</a>
-                    </div>
-                </article>
-
-                <article class="tile proj-tile tile-4">
-                    <div class="proj-icon" aria-hidden="true">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
-                    </div>
-                    <h3 class="proj-title">School Management</h3>
-                    <p class="proj-desc">Admin dashboard for managing students, teachers, classes, and attendance.</p>
-                    <ul class="proj-tech">
-                        <li class="tag">Next.js</li>
-                        <li class="tag">MySQL</li>
-                        <li class="tag">Tailwind</li>
-                    </ul>
-                    <div class="proj-actions">
-                        <a class="proj-link primary" href="https://github.com/syedraihanali/school-management-system" target="_blank" rel="noopener">Code ↗</a>
-                        <a class="proj-link" href="https://school-management-system-alpha-umber.vercel.app/admin" target="_blank" rel="noopener">Live</a>
-                    </div>
-                </article>
-
-                <article class="tile proj-tile tile-4">
-                    <div class="proj-icon" aria-hidden="true">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-                    </div>
-                    <h3 class="proj-title">Netflix Clone</h3>
-                    <p class="proj-desc">Streaming UI with auth, Prisma data layer, and a polished dark-mode interface.</p>
-                    <ul class="proj-tech">
-                        <li class="tag">Next.js</li>
-                        <li class="tag">Prisma</li>
-                        <li class="tag">Tailwind</li>
-                    </ul>
-                    <div class="proj-actions">
-                        <a class="proj-link primary" href="https://github.com/syedraihanali/simple-movie-site" target="_blank" rel="noopener">Code ↗</a>
-                    </div>
-                </article>
-
-                <article class="tile proj-tile tile-4">
-                    <div class="proj-icon" aria-hidden="true">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                    </div>
-                    <h3 class="proj-title">Wakey</h3>
-                    <p class="proj-desc">A smart alarm + sleep-tracking Flutter app focused on a calmer morning routine.</p>
-                    <ul class="proj-tech">
-                        <li class="tag">Flutter</li>
-                        <li class="tag">Dart</li>
-                        <li class="tag">Mobile</li>
-                    </ul>
-                    <div class="proj-actions">
-                        <a class="proj-link primary" href="https://github.com/syedraihanali/wakey" target="_blank" rel="noopener">Code ↗</a>
-                    </div>
-                </article>
-
-                <div class="proj-see-all">
-                    <a class="btn btn-ghost" href="https://github.com/syedraihanali" target="_blank" rel="noopener">
-                        See everything on GitHub
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                            <polyline points="7 7 17 7 17 17"></polyline>
-                        </svg>
+                <div class="projects-more" data-reveal>
+                    <a class="btn btn-ghost" href="https://github.com/syedraihanali?tab=repositories" target="_blank" rel="noopener noreferrer">
+                        See all repositories on GitHub
+                        <svg class="i" aria-hidden="true"><use href="#i-arrow-up-right" /></svg>
                     </a>
                 </div>
             </div>
         </section>
 
+        <!-- ============== SKILLS ============== -->
+        <section id="skills" class="section">
+            <div class="container">
+                <header class="section-head" data-reveal>
+                    <p class="eyebrow"><span class="eyebrow-num">04</span>Skills</p>
+                    <h2 class="section-title">The tools I <em class="serif">build</em> with.</h2>
+                    <p class="section-sub">From the first commit to the store listing — the stack I use every week.</p>
+                </header>
+
+                <div class="skills-grid" data-reveal-group>
+                    <section class="skill-group card spotlight" aria-labelledby="sk-mobile">
+                        <header><span class="skill-icon"><svg class="i" aria-hidden="true"><use href="#i-smartphone" /></svg></span><h3 id="sk-mobile">Mobile</h3></header>
+                        <ul class="skill-list">
+                            <li><img src="assets/icons/flutter.svg" alt="" width="20" height="20">Flutter</li>
+                            <li><img src="assets/icons/dart.svg" alt="" width="20" height="20">Dart</li>
+                            <li><img src="assets/icons/getx.svg" alt="" width="20" height="20">GetX</li>
+                            <li><img src="assets/icons/firebase.svg" alt="" width="20" height="20">Firebase</li>
+                            <li><img src="assets/icons/xcode.svg" alt="" width="20" height="20">Xcode</li>
+                        </ul>
+                    </section>
+                    <section class="skill-group card spotlight" aria-labelledby="sk-front">
+                        <header><span class="skill-icon"><svg class="i" aria-hidden="true"><use href="#i-layout" /></svg></span><h3 id="sk-front">Frontend</h3></header>
+                        <ul class="skill-list">
+                            <li><img src="assets/icons/react.svg" alt="" width="20" height="20">React</li>
+                            <li><img class="icon-mono" src="assets/icons/nextjs.svg" alt="" width="20" height="20">Next.js</li>
+                            <li><img src="assets/icons/typescript.svg" alt="" width="20" height="20">TypeScript</li>
+                            <li><img src="assets/icons/javascript.svg" alt="" width="20" height="20">JavaScript</li>
+                            <li><img src="assets/icons/tailwindcss.svg" alt="" width="20" height="20">Tailwind CSS</li>
+                            <li><img src="assets/icons/html.svg" alt="" width="20" height="20">HTML5</li>
+                            <li><img src="assets/icons/css.svg" alt="" width="20" height="20">CSS3</li>
+                        </ul>
+                    </section>
+                    <section class="skill-group card spotlight" aria-labelledby="sk-back">
+                        <header><span class="skill-icon"><svg class="i" aria-hidden="true"><use href="#i-code" /></svg></span><h3 id="sk-back">Backend</h3></header>
+                        <ul class="skill-list">
+                            <li><img src="assets/icons/nodejs.svg" alt="" width="20" height="20">Node.js</li>
+                            <li><img class="icon-mono" src="assets/icons/expressjs.svg" alt="" width="20" height="20">Express</li>
+                            <li><img src="assets/icons/python.svg" alt="" width="20" height="20">Python</li>
+                            <li><img class="icon-mono" src="assets/icons/django.svg" alt="" width="20" height="20">Django</li>
+                            <li><svg class="i skill-svg" aria-hidden="true"><use href="#i-api" /></svg>REST APIs</li>
+                            <li><img src="assets/icons/cpp.svg" alt="" width="20" height="20">C++</li>
+                        </ul>
+                    </section>
+                    <section class="skill-group card spotlight" aria-labelledby="sk-data">
+                        <header><span class="skill-icon"><svg class="i" aria-hidden="true"><use href="#i-layers" /></svg></span><h3 id="sk-data">Databases</h3></header>
+                        <ul class="skill-list">
+                            <li><img src="assets/icons/mongodb.svg" alt="" width="20" height="20">MongoDB</li>
+                            <li><img src="assets/icons/postgresql.svg" alt="" width="20" height="20">PostgreSQL</li>
+                            <li><img src="assets/icons/mysql.svg" alt="" width="20" height="20">MySQL</li>
+                            <li><img src="assets/icons/supabase.svg" alt="" width="20" height="20">Supabase</li>
+                            <li><img class="icon-mono" src="assets/icons/prisma.svg" alt="" width="20" height="20">Prisma</li>
+                            <li><img src="assets/icons/redis.svg" alt="" width="20" height="20">Redis</li>
+                        </ul>
+                    </section>
+                    <section class="skill-group card spotlight" aria-labelledby="sk-ops">
+                        <header><span class="skill-icon"><svg class="i" aria-hidden="true"><use href="#i-cloud" /></svg></span><h3 id="sk-ops">Cloud &amp; DevOps</h3></header>
+                        <ul class="skill-list">
+                            <li><img src="assets/icons/docker.svg" alt="" width="20" height="20">Docker</li>
+                            <li><img src="assets/icons/githubactions.svg" alt="" width="20" height="20">GitHub Actions</li>
+                            <li><img class="icon-mono" src="assets/icons/aws.svg" alt="" width="20" height="20">AWS</li>
+                            <li><img src="assets/icons/azure.svg" alt="" width="20" height="20">Azure</li>
+                            <li><img src="assets/icons/gcp.svg" alt="" width="20" height="20">Google Cloud</li>
+                            <li><img src="assets/icons/linux.svg" alt="" width="20" height="20">Linux</li>
+                        </ul>
+                    </section>
+                    <section class="skill-group card spotlight" aria-labelledby="sk-auto">
+                        <header><span class="skill-icon"><svg class="i" aria-hidden="true"><use href="#i-workflow" /></svg></span><h3 id="sk-auto">Automation, AI &amp; tools</h3></header>
+                        <ul class="skill-list">
+                            <li><img src="assets/icons/n8n.svg" alt="" width="20" height="20">n8n</li>
+                            <li><img class="icon-mono" src="assets/icons/openai.svg" alt="" width="20" height="20">OpenAI API</li>
+                            <li><img src="assets/icons/celery.svg" alt="" width="20" height="20">Celery</li>
+                            <li><img src="assets/icons/postman.svg" alt="" width="20" height="20">Postman</li>
+                            <li><img src="assets/icons/git.svg" alt="" width="20" height="20">Git</li>
+                            <li><img src="assets/icons/vscode.svg" alt="" width="20" height="20">VS Code</li>
+                            <li><img src="assets/icons/vim.svg" alt="" width="20" height="20">Vim</li>
+                            <li><img src="assets/icons/bash.svg" alt="" width="20" height="20">Bash</li>
+                        </ul>
+                    </section>
+                </div>
+
+                <div class="soft-skills" data-reveal>
+                    <h3 class="soft-title">Ways of working</h3>
+                    <ul>
+                        <li>Client communication</li>
+                        <li>Technical team leadership</li>
+                        <li>Requirement analysis</li>
+                        <li>Store release management</li>
+                        <li>Fast learner</li>
+                        <li>Problem solving</li>
+                        <li>Time management</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <!-- ============== CONTACT ============== -->
-        <section id="contact" class="container">
-            <div class="bento reveal">
-                <div class="section-head">
-                    <p class="section-eyebrow">contact</p>
-                    <h2 class="section-title">Contact</h2>
-                </div>
+        <section id="contact" class="section section--contact">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info" data-reveal>
+                        <p class="eyebrow"><span class="eyebrow-num">05</span>Contact</p>
+                        <h2 class="section-title">Let's build something <em class="serif">great</em> together.</h2>
+                        <p class="section-sub">Have a project in mind, a role to fill, or just want to say hi? Send a
+                            message and I'll get back to you within a day.</p>
 
-                <div class="tile contact-form-tile">
-                    <p class="tile-eyebrow">drop a message</p>
-                    <!-- TODO: replace YOUR_FORM_ID after creating a Formspree form at https://formspree.io/forms -->
-                    <form id="contact-form" action="https://formspree.io/f/mjglqqev" method="POST" novalidate>
-                        <div class="field">
-                            <label for="cf-name">Name</label>
-                            <input id="cf-name" name="name" type="text" required minlength="2" maxlength="80"
-                                autocomplete="name" placeholder="Your name"
-                                aria-describedby="cf-name-error">
-                            <span class="field-error" id="cf-name-error" data-error-for="cf-name" aria-live="polite"></span>
-                        </div>
-                        <div class="field">
-                            <label for="cf-email">Email</label>
-                            <input id="cf-email" name="email" type="email" required maxlength="120"
-                                autocomplete="email" placeholder="you@domain.com"
-                                aria-describedby="cf-email-error">
-                            <span class="field-error" id="cf-email-error" data-error-for="cf-email" aria-live="polite"></span>
-                        </div>
-                        <div class="field">
-                            <label for="cf-message">
-                                <span>Message</span>
-                                <span class="field-counter" data-counter-for="cf-message">0 / 2000</span>
-                            </label>
-                            <textarea id="cf-message" name="message" rows="5" required minlength="10" maxlength="2000"
-                                placeholder="What are you building?"
-                                aria-describedby="cf-message-error"></textarea>
-                            <span class="field-error" id="cf-message-error" data-error-for="cf-message" aria-live="polite"></span>
-                        </div>
-                        <div class="honeypot" aria-hidden="true">
-                            <label for="cf-gotcha">Don't fill this</label>
-                            <input id="cf-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            Send message
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <line x1="22" y1="2" x2="11" y2="13"></line>
-                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                            </svg>
-                        </button>
-                        <p class="form-status" role="status" aria-live="polite"></p>
-                    </form>
-                </div>
+                        <ul class="contact-list">
+                            <li class="contact-item">
+                                <span class="ci-icon"><svg class="i" aria-hidden="true"><use href="#i-mail" /></svg></span>
+                                <span class="ci-body">
+                                    <span class="ci-label">Email</span>
+                                    <a href="mailto:syedraihanali65@gmail.com">syedraihanali65@gmail.com</a>
+                                </span>
+                                <button type="button" class="icon-btn copy-btn" data-copy="syedraihanali65@gmail.com" aria-label="Copy email address">
+                                    <svg class="i i-copy" aria-hidden="true"><use href="#i-copy" /></svg>
+                                    <svg class="i i-done" aria-hidden="true"><use href="#i-check" /></svg>
+                                </button>
+                            </li>
+                            <li class="contact-item">
+                                <span class="ci-icon"><svg class="i" aria-hidden="true"><use href="#i-linkedin" /></svg></span>
+                                <span class="ci-body">
+                                    <span class="ci-label">LinkedIn</span>
+                                    <a href="https://www.linkedin.com/in/syedraihanali/" target="_blank" rel="noopener noreferrer">in/syedraihanali</a>
+                                </span>
+                            </li>
+                            <li class="contact-item">
+                                <span class="ci-icon"><svg class="i" aria-hidden="true"><use href="#i-github" /></svg></span>
+                                <span class="ci-body">
+                                    <span class="ci-label">GitHub</span>
+                                    <a href="https://github.com/syedraihanali" target="_blank" rel="noopener noreferrer">@syedraihanali</a>
+                                </span>
+                            </li>
+                            <li class="contact-item">
+                                <span class="ci-icon"><svg class="i" aria-hidden="true"><use href="#i-phone" /></svg></span>
+                                <span class="ci-body">
+                                    <span class="ci-label">Phone</span>
+                                    <a href="tel:+8801841626387">+880 1841 626387</a>
+                                </span>
+                            </li>
+                        </ul>
 
-                <div class="contact-side">
-                    <div class="tile">
-                        <p class="tile-eyebrow">elsewhere</p>
-                        <a class="contact-link" href="mailto:syedraihanali65@gmail.com">
-                            <img src="assets/icons/email.svg" alt="" width="22" height="22" loading="lazy">
-                            <span class="contact-link-content">
-                                <span class="contact-link-label">Email</span>
-                                <span class="contact-link-value">syedraihanali65@gmail.com</span>
-                            </span>
-                        </a>
-                        <a class="contact-link" href="https://github.com/syedraihanali" target="_blank" rel="noopener" style="margin-top:0.5rem">
-                            <img src="assets/icons/github.svg" alt="" width="22" height="22" loading="lazy">
-                            <span class="contact-link-content">
-                                <span class="contact-link-label">GitHub</span>
-                                <span class="contact-link-value">@syedraihanali</span>
-                            </span>
-                        </a>
-                        <a class="contact-link" href="https://www.linkedin.com/in/syedraihanali/" target="_blank" rel="noopener" style="margin-top:0.5rem">
-                            <img src="assets/icons/linkedin.svg" alt="" width="22" height="22" loading="lazy">
-                            <span class="contact-link-content">
-                                <span class="contact-link-label">LinkedIn</span>
-                                <span class="contact-link-value">syedraihanali</span>
-                            </span>
-                        </a>
-                        <a class="contact-link" href="tel:+8801841626387" style="margin-top:0.5rem">
-                            <img src="assets/icons/phone.svg" alt="" width="22" height="22" loading="lazy">
-                            <span class="contact-link-content">
-                                <span class="contact-link-label">Phone</span>
-                                <span class="contact-link-value">+880 1841 626387</span>
-                            </span>
-                        </a>
+                        <div class="clock-card">
+                            <span class="ci-icon"><svg class="i" aria-hidden="true"><use href="#i-pin" /></svg></span>
+                            <p>
+                                <strong>Dhaka, Bangladesh</strong>
+                                <span><span data-clock>—</span> local time · GMT+6</span>
+                            </p>
+                        </div>
                     </div>
-                    <div class="tile">
-                        <p class="tile-eyebrow">based in</p>
-                        <span class="location-chip">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
+
+                    <div class="form-card card" data-reveal>
+                        <form id="contact-form" class="form" action="https://formspree.io/f/mvkklqgw" method="POST" novalidate>
+                            <div class="form-head">
+                                <h3>Send a message</h3>
+                                <p>Fields marked <span aria-hidden="true">*</span><span class="sr-only">with an asterisk</span> are required.</p>
+                            </div>
+
+                            <div class="field-row">
+                                <div class="field">
+                                    <label for="cf-name">Name <span aria-hidden="true">*</span></label>
+                                    <input id="cf-name" name="name" type="text" required minlength="2" maxlength="80"
+                                        autocomplete="name" placeholder="Your name" aria-describedby="cf-name-error">
+                                    <p class="field-error" id="cf-name-error" aria-live="polite"></p>
+                                </div>
+                                <div class="field">
+                                    <label for="cf-email">Email <span aria-hidden="true">*</span></label>
+                                    <input id="cf-email" name="email" type="email" required maxlength="120"
+                                        autocomplete="email" inputmode="email" placeholder="you@company.com"
+                                        aria-describedby="cf-email-error">
+                                    <p class="field-error" id="cf-email-error" aria-live="polite"></p>
+                                </div>
+                            </div>
+
+                            <fieldset class="field topics">
+                                <legend>What can I help with?</legend>
+                                <div class="topic-list">
+                                    <label class="topic"><input type="radio" name="topic" value="Mobile app"><span>Mobile app</span></label>
+                                    <label class="topic"><input type="radio" name="topic" value="Web platform"><span>Web platform</span></label>
+                                    <label class="topic"><input type="radio" name="topic" value="Automation / AI"><span>Automation / AI</span></label>
+                                    <label class="topic"><input type="radio" name="topic" value="Job opportunity"><span>Job opportunity</span></label>
+                                    <label class="topic"><input type="radio" name="topic" value="Something else"><span>Something else</span></label>
+                                </div>
+                            </fieldset>
+
+                            <div class="field">
+                                <label for="cf-message" class="label-split">
+                                    <span>Message <span aria-hidden="true">*</span></span>
+                                    <span class="field-counter" data-counter aria-hidden="true">0 / 2000</span>
+                                </label>
+                                <textarea id="cf-message" name="message" rows="5" required minlength="10" maxlength="2000"
+                                    placeholder="Tell me about your project, timeline and goals…"
+                                    aria-describedby="cf-message-error"></textarea>
+                                <p class="field-error" id="cf-message-error" aria-live="polite"></p>
+                            </div>
+
+                            <input type="hidden" name="_subject" value="New message from syedraihanali.me">
+                            <div class="honeypot" aria-hidden="true">
+                                <label for="cf-gotcha">Leave this field empty</label>
+                                <input id="cf-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary btn-lg btn-submit">
+                                    <span class="btn-label">Send message</span>
+                                    <svg class="i" aria-hidden="true"><use href="#i-send" /></svg>
+                                    <span class="spinner" aria-hidden="true"></span>
+                                </button>
+                                <p class="form-note">Prefer email? <a href="mailto:syedraihanali65@gmail.com">syedraihanali65@gmail.com</a></p>
+                            </div>
+                            <p class="form-status" role="status" aria-live="polite"></p>
+                        </form>
+
+                        <div class="form-success" hidden tabindex="-1">
+                            <svg class="success-check" viewBox="0 0 52 52" aria-hidden="true">
+                                <circle cx="26" cy="26" r="24" />
+                                <path d="M15 27.5 22.5 35 37.5 19" />
                             </svg>
-                            Dhaka, Bangladesh
-                        </span>
+                            <h3>Message sent!</h3>
+                            <p data-success-text>Thanks for reaching out — I'll get back to you within a day or two.</p>
+                            <button type="button" class="btn btn-ghost" data-form-reset>Send another message</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- ============== FOOTER ============== -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Syed Raihan Ali · all rights reserved</p>
-            <p>
-                <a href="https://github.com/syedraihanali" target="_blank" rel="noopener">github</a>
-                ·
-                <a href="https://www.linkedin.com/in/syedraihanali/" target="_blank" rel="noopener">linkedin</a>
-                ·
-                <a href="mailto:syedraihanali65@gmail.com">email</a>
-            </p>
+        <div class="container footer-top">
+            <a href="#home" class="brand" aria-label="Syed Raihan Ali — back to top">
+                <span class="brand-mark" aria-hidden="true">SR</span>
+                <span class="brand-name">Syed Raihan Ali</span>
+            </a>
+            <nav class="footer-links" aria-label="Footer">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="social-row">
+                <a class="icon-btn" href="https://github.com/syedraihanali" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg class="i" aria-hidden="true"><use href="#i-github" /></svg></a>
+                <a class="icon-btn" href="https://www.linkedin.com/in/syedraihanali/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="i" aria-hidden="true"><use href="#i-linkedin" /></svg></a>
+                <a class="icon-btn" href="mailto:syedraihanali65@gmail.com" aria-label="Email"><svg class="i" aria-hidden="true"><use href="#i-mail" /></svg></a>
+            </div>
         </div>
+        <div class="container footer-bottom">
+            <p>© <span data-year>2026</span> Syed Raihan Ali. Designed &amp; built in Dhaka.</p>
+            <p>Hand-written HTML, CSS &amp; JavaScript · no frameworks</p>
+        </div>
+        <p class="footer-wordmark" aria-hidden="true">Syed Raihan Ali</p>
     </footer>
+
+    <button class="to-top" type="button" aria-label="Back to top" data-to-top>
+        <svg class="i" aria-hidden="true"><use href="#i-arrow-up" /></svg>
+    </button>
+    <div class="toast" role="status" aria-live="polite" data-toast></div>
 
     <script src="js/script.js" defer></script>
 </body>

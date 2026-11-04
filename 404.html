@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <script>
+        (function () {
+            var d = document.documentElement;
+            try {
+                var t = localStorage.getItem('theme');
+                if (t === 'dark' || t === 'light') d.setAttribute('data-theme', t);
+            } catch (e) { }
+            var m = document.querySelector('meta[name="theme-color"]');
+            if (m && d.getAttribute('data-theme') === 'dark') m.setAttribute('content', '#060F1D');
+        })();
+    </script>
+    <title>Page not found · Syed Raihan Ali</title>
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#F2F8FE">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .nf {
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            min-height: 100svh;
+            padding: 3rem var(--gutter);
+            text-align: center;
+        }
+
+        .nf .brand {
+            margin-bottom: 2rem;
+        }
+
+        .nf-code {
+            font-size: clamp(6rem, 22vw, 12rem);
+            font-weight: 720;
+            line-height: 0.9;
+            letter-spacing: -0.06em;
+            background: var(--grad-text);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: bob 6s var(--ease-in-out) infinite;
+        }
+
+        .nf h1 {
+            margin-top: 1.25rem;
+            font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem);
+            font-weight: 640;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            text-wrap: balance;
+        }
+
+        .nf h1 .serif {
+            font-size: 1.1em;
+            background: var(--grad-text);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            padding-right: 0.08em;
+        }
+
+        .nf p.lead {
+            max-width: 42ch;
+            margin: 0.9rem auto 0;
+            color: var(--ink-2);
+        }
+
+        .nf .hero-cta {
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+            <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" /></symbol>
+        </defs>
+    </svg>
+
+    <div class="backdrop" aria-hidden="true">
+        <span class="aurora aurora-1"></span>
+        <span class="aurora aurora-2"></span>
+        <span class="aurora aurora-3"></span>
+        <span class="noise"></span>
+    </div>
+
+    <main class="nf">
+        <div>
+            <a href="/" class="brand" aria-label="Syed Raihan Ali — home">
+                <span class="brand-mark" aria-hidden="true">SR</span>
+                <span class="brand-name">Syed Raihan Ali</span>
+            </a>
+            <p class="nf-code" aria-hidden="true">404</p>
+            <h1>This page drifted off into the <em class="serif">clouds</em>.</h1>
+            <p class="lead">The link may be old or mistyped. Let's get you back on solid ground.</p>
+            <div class="hero-cta">
+                <a class="btn btn-primary btn-lg" href="/">
+                    Back to home
+                    <svg class="i" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+                </a>
+                <a class="btn btn-ghost btn-lg" href="/#projects">See my projects</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
