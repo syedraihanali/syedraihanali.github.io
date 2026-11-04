@@ -1,6 +1,6 @@
 # syedraihanali.me
 
-Personal portfolio of **Syed Raihan Ali** — Flutter & full-stack developer and stack lead at Softvence Agency, based in Dhaka, Bangladesh.
+Personal portfolio of **Syed Raihan Ali** — freelance Flutter & full-stack developer in Dhaka, Bangladesh, with six production apps on the App Store and Google Play. Open to full-time roles.
 
 **Live:** <https://syedraihanali.me/>
 
@@ -14,8 +14,8 @@ Personal portfolio of **Syed Raihan Ali** — Flutter & full-stack developer and
 |---|---|
 | Hero | Name, rotating headline, CTAs, live repo count, portrait with orbiting tech icons |
 | About | Bio, a "right now" card and four "what I do" services |
-| Experience | Animated timeline (Softvence Agency, Bit to Byte) plus education |
-| Projects | 4 featured projects with custom visuals, 6 more in a filterable grid, live GitHub stars |
+| Experience | Animated timeline (freelance, Softvence Agency, Bit to Byte) plus education |
+| Projects | 6 production apps (screenshots + official App Store / Google Play badges), then 10 GitHub projects; filterable, with live GitHub stars |
 | GitHub activity | Contribution heatmap and stats, fetched live |
 | Skills | Six stack groups with icons, plus ways of working |
 | Contact | Formspree form (validation, topic chips, spam protection) and direct links |
@@ -56,7 +56,9 @@ syedraihanali.github.io/
 │   ├── favicon.svg, apple-touch-icon.png, icon-*.png
 │   ├── fonts/               # Geist, Geist Mono, Instrument Serif
 │   ├── icons/               # Tech stack icons
-│   └── img/                 # Portrait + project screenshots (WebP)
+│   └── img/                 # Portrait, project screenshots, store badges
+│       ├── badges/          # Official App Store + Google Play badges
+│       └── projects/apps/   # Icons + screenshots for the six production apps
 ├── favicon.ico
 ├── site.webmanifest
 ├── sitemap.xml
@@ -78,8 +80,12 @@ Then open <http://localhost:8000/>.
 
 - **Text, experience, projects** — edit `index.html` directly. Each project is an `<article class="project">`;
   `data-cat` sets its filter (`mobile`, `web`, `auto`) and `data-repo` links it to a GitHub repo for live star counts.
+- **Production apps** — each one is an `<article class="project project--app">` in the `#apps` group. Its icon and three
+  screenshots live in `assets/img/projects/apps/<slug>/` (`screen-l`, `screen-c`, `screen-r`); `--tint` sets the glow colour.
+- **Open questions** — search `index.html` for `TODO(raihan)` to find content waiting on confirmation.
 - **Contact form** — posts to Formspree at `https://formspree.io/f/mvkklqgw` (the form's `action` attribute).
-- **CV** — replace `assets/CV_Syed_Raihan_Ali.pdf` and keep the file name.
+- **CV** — the "Download CV" buttons are switched off until the updated CV is uploaded. Add the new PDF to `assets/`
+  and put the buttons back where the `TODO(raihan)` comments are.
 - **Portrait** — replace `assets/img/raihan.webp` (square, 720×720 works well).
 - **Colours** — all design tokens live at the top of `css/style.css` (`:root` for light, `:root[data-theme="dark"]` for dark).
 

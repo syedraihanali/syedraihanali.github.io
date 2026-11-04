@@ -2894,6 +2894,200 @@ html:not(.js) .rotator-word:not(:first-child) {
     margin-top: 2.25rem;
 }
 
+/* Project groups: production apps first, then GitHub work */
+.project-group + .project-group {
+    margin-top: clamp(3.5rem, 2.5rem + 3vw, 5rem);
+}
+
+.group-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.75rem 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.group-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+
+.group-kicker .i {
+    width: 16px;
+    height: 16px;
+    color: var(--ink);
+}
+
+.group-kicker .pulse {
+    width: 7px;
+    height: 7px;
+}
+
+.group-title {
+    margin-top: 0.45rem;
+    font-size: clamp(1.35rem, 1.1rem + 0.9vw, 1.85rem);
+    font-weight: 640;
+    line-height: 1.2;
+    letter-spacing: -0.028em;
+}
+
+.group-note {
+    max-width: 46ch;
+    font-size: 0.95rem;
+    color: var(--ink-2);
+}
+
+/* App cards */
+.project--app {
+    grid-column: span 6;
+}
+
+.app-visual {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+    height: clamp(300px, 27vw, 370px);
+    overflow: hidden;
+    background: radial-gradient(55% 65% at 50% 60%, rgb(var(--tint, 14 165 233) / 0.22), transparent 72%), var(--visual-bg);
+    border-bottom: 1px solid var(--line);
+}
+
+.app-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: radial-gradient(var(--dot) 1.2px, transparent 1.2px);
+    background-size: 18px 18px;
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 35%, transparent 80%);
+    mask-image: radial-gradient(ellipse at center, #000 35%, transparent 80%);
+}
+
+.app-phones {
+    max-width: 440px;
+    height: 100%;
+}
+
+.app-phones .phone {
+    top: 53%;
+    width: clamp(108px, 10.5vw, 140px);
+}
+
+.phone.is-frame {
+    padding: 0;
+    background: transparent;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg), 0 0 0 1px var(--line);
+}
+
+.phone.is-frame img {
+    border-radius: 16px;
+}
+
+.app-head {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.app-icon {
+    flex-shrink: 0;
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    box-shadow: 0 0 0 1px var(--line), var(--shadow-sm);
+}
+
+.app-head .project-title {
+    margin-top: 0;
+}
+
+.app-meta {
+    margin-top: 0.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+}
+
+.project--app .project-desc {
+    margin-top: 1rem;
+}
+
+.app-role {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    margin-top: 1.15rem;
+    padding: 0.65rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+    background: var(--accent-softer);
+    border: 1px solid var(--line);
+}
+
+.app-role .i {
+    width: 16px;
+    height: 16px;
+    margin-top: 0.15rem;
+    color: var(--accent-ink);
+}
+
+.app-role strong {
+    color: var(--ink);
+}
+
+.store-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 1.35rem;
+}
+
+.store-badges a {
+    display: block;
+    border-radius: 8px;
+    transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+}
+
+.store-badges a:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.store-badges img {
+    display: block;
+    width: auto;
+    height: 40px;
+}
+
+.inline-link {
+    font-weight: 560;
+    color: var(--accent-ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+.inline-link:hover {
+    color: var(--ink);
+}
+
 /* ---------- 13. GitHub activity ---------- */
 .gh {
     margin-top: 1.25rem;
@@ -3913,6 +4107,12 @@ html:not(.js) .rotator-word:not(:first-child) {
 
     .menu-toggle {
         display: inline-grid;
+    }
+}
+
+@media (max-width: 819px) {
+    .project--app {
+        grid-column: 1 / -1;
     }
 }
 

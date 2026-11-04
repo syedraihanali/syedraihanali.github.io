@@ -466,11 +466,17 @@
     }
 
     /* ---------- 9. Project filters ---------- */
-    const grid = $('[data-projects]');
+    // Cards live in two groups (production apps, GitHub work). A group hides itself
+    // when nothing in it matches the active filter.
+    const grids = $$('[data-projects]');
+    const groups = $$('[data-group]');
     const filterBtns = $$('[data-filter]');
-    if (grid && filterBtns.length) {
-        const cards = $$('.project', grid);
+    if (grids.length && filterBtns.length) {
+        const cards = grids.flatMap((g) => $$('.project', g));
         const matches = (card, f) => f === 'all' || (card.dataset.cat || '').split(' ').includes(f);
+        const groupMatches = (group, f) => $$('.project', group).some((c) => matches(c, f));
+        const headOf = (group) => $('.group-head', group);
+        const isShown = (el) => el.offsetParent !== null;
 
         filterBtns.forEach((btn) => {
             const count = cards.filter((c) => matches(c, btn.dataset.filter)).length;
@@ -482,19 +488,30 @@
         const applyFilter = (f) => {
             const leaving = cards.filter((c) => !c.classList.contains('is-hidden') && !matches(c, f));
             const entering = cards.filter((c) => c.classList.contains('is-hidden') && matches(c, f));
+            const groupsLeaving = groups.filter((g) => !g.hidden && !groupMatches(g, f));
+            const groupsEntering = groups.filter((g) => g.hidden && groupMatches(g, f));
 
             if (reduceMotion || !Element.prototype.animate) {
                 cards.forEach((c) => c.classList.toggle('is-hidden', !matches(c, f)));
+                groups.forEach((g) => { g.hidden = !groupMatches(g, f); });
                 entering.forEach(reveal);
+                groupsEntering.forEach((g) => $$('[data-reveal]', g).forEach(reveal));
                 return;
             }
 
             busy = true;
+            // FIRST: everything that stays on screen and may move.
             const staying = cards.filter((c) => !c.classList.contains('is-hidden') && matches(c, f));
-            const first = new Map(staying.map((c) => [c, c.getBoundingClientRect()]));
+            const movers = [
+                ...staying,
+                ...groups.filter((g) => !g.hidden && groupMatches(g, f)).map(headOf).filter(Boolean),
+                ...$$('.gh, .projects-more').filter(isShown),
+            ];
+            const first = new Map(movers.map((el) => [el, el.getBoundingClientRect()]));
 
-            const fadeOuts = leaving.map((c) => c.animate(
-                [{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(0.96)' }],
+            const fading = [...leaving, ...groupsLeaving.map(headOf).filter(Boolean)];
+            const fadeOuts = fading.map((el) => el.animate(
+                [{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(0.97)' }],
                 { duration: 180, easing: 'ease-in', fill: 'forwards' }
             ).finished.catch(() => { }));
 
@@ -503,25 +520,35 @@
                     c.classList.add('is-hidden');
                     c.getAnimations().forEach((a) => a.cancel());
                 });
+                groupsLeaving.forEach((g) => {
+                    g.hidden = true;
+                    const head = headOf(g);
+                    if (head) head.getAnimations().forEach((a) => a.cancel());
+                });
+                groupsEntering.forEach((g) => {
+                    g.hidden = false;
+                    $$('[data-reveal]', g).forEach(reveal);
+                });
                 entering.forEach((c) => {
                     c.classList.remove('is-hidden');
                     reveal(c);
                 });
 
-                staying.forEach((c) => {
-                    const last = c.getBoundingClientRect();
-                    const f0 = first.get(c);
+                // LAST + INVERT + PLAY
+                movers.forEach((el) => {
+                    const f0 = first.get(el);
+                    const last = el.getBoundingClientRect();
                     const dx = f0.left - last.left;
                     const dy = f0.top - last.top;
                     if (Math.abs(dx) > 1 || Math.abs(dy) > 1) {
-                        c.animate(
-                            [{ transform: `translate(${dx}px, ${dy}px)` }, { transform: 'translate(0, 0)' }],
+                        el.animate(
+                            [{ transform: 'translate(' + dx + 'px, ' + dy + 'px)' }, { transform: 'translate(0, 0)' }],
                             { duration: 550, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' }
                         );
                     }
                 });
-                entering.forEach((c, i) => {
-                    c.animate(
+                [...groupsEntering.map(headOf).filter(Boolean), ...entering].forEach((el, i) => {
+                    el.animate(
                         [{ opacity: 0, transform: 'translateY(18px) scale(0.98)' }, { opacity: 1, transform: 'none' }],
                         { duration: 500, delay: 60 + i * 60, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', fill: 'backwards' }
                     );
@@ -581,8 +608,16 @@
         }
 
         if (data.repos == null && data.contributions == null) throw new Error('GitHub data unavailable');
+        // If one source failed, keep the partial result for 5 minutes only so the next visit retries.
+        if (!data.days || data.repos == null) data.t = Date.now() - GH_TTL + 5 * 60 * 1000;
         store.setJSON(GH_CACHE, data);
         return data;
+    };
+
+    const showHeatmapFallback = () => {
+        if (!heatmapEl || !heatmapEl.isConnected || heatmapEl.children.length) return;
+        heatmapEl.outerHTML = '<p class="heatmap-fallback">Live activity is unavailable right now — '
+            + '<a class="link-arrow" href="https://github.com/' + GH_USER + '" target="_blank" rel="noopener noreferrer">view it on GitHub</a>.</p>';
     };
 
     const renderHeatmap = (days) => {
@@ -661,16 +696,13 @@
         }
 
         if (Array.isArray(data.days) && data.days.length) renderHeatmap(data.days);
+        else showHeatmapFallback();
     };
 
     // Stars live on the project cards above the GitHub card, so start loading
     // as soon as the projects section gets close.
     whenNear($('#projects'), () => {
-        loadGitHub().then(applyGitHub).catch(() => {
-            if (heatmapEl && !heatmapEl.children.length) {
-                heatmapEl.outerHTML = `<p class="heatmap-fallback">Live activity is unavailable right now — <a class="link-arrow" href="https://github.com/${GH_USER}" target="_blank" rel="noopener noreferrer">view it on GitHub</a>.</p>`;
-            }
-        });
+        loadGitHub().then(applyGitHub).catch(showHeatmapFallback);
     }, '600px');
 
     /* ---------- 11. Dhaka live environment card ---------- */
